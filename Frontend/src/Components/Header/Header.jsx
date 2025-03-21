@@ -1,15 +1,10 @@
-import { CiLocationOn } from "react-icons/ci";
 import React from 'react'
 
 const Header = () => {
   return (
-    <div>
-        <div className="flex justify-between py-4 px-4 items-center text-[#808080FF] text-[14px] font-extralight">
-          <p className="flex items-center">
-      <CiLocationOn className="" /> <span className="font-light"> Store Location: Karachi,Pakistan</span></p>
-      <p>
-      <button className="hover:cursor-pointer">Sign In/ Sign Up</button></p>
-      </div>
+    <div >
+
+      <div className='bg-black text-white text-center py-2'><span className=''>Sign up and get 20% off to your first order.</span> <span className='underline font-[700]'>Sign Up Now</span></div>
     </div>
   )
 }
