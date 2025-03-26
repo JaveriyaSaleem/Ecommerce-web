@@ -3,7 +3,15 @@
   font-family: Poppins;
   src: url(./assets/Fonts/Poppins-Regular.ttf);
 }
+@font-face {
+  font-family: integralFC;
+  src: url(./assets/Fonts/Fontspring-DEMO-integralcf-regular.otf);
+}
 body{
 font-family: Poppins;
 font-weight: lighter;
+background: #f2f0f1;
+}
+.boldFont{
+font-family: integralFC;
 }
