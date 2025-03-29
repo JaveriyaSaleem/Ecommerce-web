@@ -1,27 +1,33 @@
 import React from 'react'
 
-import Navbar from './Components/Header/Navbar'
-import Hero from './Components/Hero'
-import Slider from './Components/Slider.jsx'
-import Signup from './Components/Signup & Login/Signup.jsx'
-import Login from './Components/Signup & Login/Login.jsx'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import SignupForm from './Components/Signup & Login/Signup.jsx'
+import Login from './Components/Signup & Login/Login.jsx';
+import Dashboard from './Components/Dashboard.jsx';
+
 
 
 
 
 const App = () => {
+  
   return (
-    <div className='
-    
-    '>
-
-      {/* <Navbar/>
-      <Hero/>
-      <Slider/> */}
-      <Login/>
+   
 
      
-    </div>
+<Router>
+      <Routes>
+        <Route path="/" element={<SignupForm />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+     
+    
   )
 }
 
