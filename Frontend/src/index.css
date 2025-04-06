@@ -10,7 +10,12 @@
 body{
 font-family: Poppins;
 font-weight: lighter;
-background: #f2f0f1;
+
+}
+body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 .boldFont{
 font-family: integralFC;

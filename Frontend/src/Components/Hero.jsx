@@ -3,7 +3,7 @@ import HeroImg from '../assets/Images/HeroImg.png'
 
 const Hero = () => {
   return (
-    <main className='flex flex-col-reverse md:grid md:grid-cols-2 items-center justify-center  text-center md:text-left gap-5 py-10'>
+    <main className='-mx-10 px-10 bg-[#f0f0f0] flex flex-col-reverse md:grid md:grid-cols-2 items-center justify-center  text-center md:text-left gap-5 py-10'>
     <div className='flex flex-col gap-2 '>
       
       <h1 className='text-[44px] font-black boldFont md:w-5/6'>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>

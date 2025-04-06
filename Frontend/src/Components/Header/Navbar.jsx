@@ -53,7 +53,7 @@ const Navbar = () => {
           <a href="#" className=" hover: hover:font-bold">Brands</a>
           </div>
 
-           <div className='border rounded-full w-80 flex items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
+           <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
                   <div className='flex w-12 justify-between font-bold'>
                   <FiShoppingCart />
                   <CgProfile />
