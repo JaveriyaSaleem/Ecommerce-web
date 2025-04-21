@@ -1,23 +1,15 @@
-import mongoose from "mongoose"
-import "dotenv/config"
-const url = process.env.MONGODB_URL
+import 'dotenv/config'
+import mongoose from 'mongoose'
 import chalk from "chalk";
 
-
-const connectToDB =async()=>{
+const url = process.env.MONGODB_URL
+const connectingFuction = async()=>{
     try{
-
-       await mongoose.connect(url,{dbName:"ecommerce-website"});
-        console.log(chalk.bgGreen.white("connected to db"))
+        await mongoose.connect(url,{dbName:"ecommerce"})
+        console.log(chalk.bgGreen.white('connected to MongoDB'));
     }
-    catch(e){
-        console.log(e)
+    catch(error){
+        console.error("error in connecting to db",error)
     }
-
 }
-export default connectToDB
-
-// const Cat = mongoose.model('Cat', { name: String });
-
-// const kitty = new Cat({ name: 'Zildjian' });
-// kitty.save().then(() => console.log('meow'));
+export default connectingFuction

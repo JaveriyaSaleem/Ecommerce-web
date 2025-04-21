@@ -1,31 +1,14 @@
-import express from 'express';
-const app = express();
+import express from "express"
+import mongoose from "mongoose"
+const app = express()
+const port = 3000
+import connectingFuction from "./Db/db.js"
 
-import cors from "cors";
-import userRoutes from "./Router/userRoutes.js";
-import connectToDb from "./db/db.js";
-import cartRoutes from "./Router/cartRoutes.js"
+console.log(connectingFuction())
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-
-
-
-app.use(express.json());
-
-// connect to db
-connectToDb();
-
-// middlewares
-
-// app.get("/",(req,res)=>{
-//   res.send("server is active")
-// })
-
-app.use('/api/auth', userRoutes);
-app.use('/api/cart', cartRoutes);
-
-
-// app.use('/api/products', productRoutes);
-
-app.listen(5000, () => {
-	console.log('server is listening 5000');
-});
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})

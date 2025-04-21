@@ -1,33 +1,24 @@
 {
-  "name": "ecommerce-website",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "",
   "main": "app.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.mjs"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JaveriyaSaleem/Ecommerce-web.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JaveriyaSaleem/Ecommerce-web/issues"
-  },
-  "homepage": "https://github.com/JaveriyaSaleem/Ecommerce-web#readme",
-  "description": "",
+  "type": "module",
   "dependencies": {
     "chalk": "^5.4.1",
-    "cors": "^2.8.5",
     "dot": "^1.1.3",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "env": "^0.0.2",
-    "express": "^4.21.2",
-    "mongodb": "^6.14.2",
-    "mongoose": "^8.12.1",
-    "moongose": "^1.0.0",
-    "node": "^23.9.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "node": "^23.11.0",
     "nodemon": "^3.1.9"
   }
 }
