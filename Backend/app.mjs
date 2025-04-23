@@ -1,7 +1,7 @@
 import express from "express"
-import mongoose from "mongoose"
+
 import cors from "cors"
-import connectingFuction from "./Db/db.js"
+import connectToDb from "./db/db.js"
 import AdminRouter from "./Router/AdminRouter.js"
 const app = express()
 const port = 3000
@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(cors())
 app.use(express.json())
 app.use('/admin', AdminRouter)
-console.log(connectingFuction())
+console.log(connectToDb())
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })

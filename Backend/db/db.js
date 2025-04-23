@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import chalk from "chalk";
 
 const url = process.env.MONGODB_URL
-const connectingFuction = async()=>{
+const connectToDb = async()=>{
     try{
         await mongoose.connect(url,{dbName:"ecommerce"})
         console.log(chalk.bgGreen.white('connected to MongoDB'));
@@ -12,4 +12,4 @@ const connectingFuction = async()=>{
         console.error("error in connecting to db",error)
     }
 }
-export default connectingFuction
+export default connectToDb
