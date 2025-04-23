@@ -13,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "chalk": "^5.4.1",
+    "cors": "^2.8.5",
     "dot": "^1.1.3",
     "dotenv": "^16.5.0",
     "env": "^0.0.2",

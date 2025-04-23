@@ -20,16 +20,17 @@ const App = () => {
    
 <>
 <AdminDashboard/>
-</>
-     
-/* <Router>
+{/* <Router>
       <Routes>
         <Route path="/" element={<SignupForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-    </Router> */
+    </Router>  */}
      
+</>
+     
+
     
   )
 }
