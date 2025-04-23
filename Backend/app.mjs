@@ -4,7 +4,8 @@ import cors from "cors"
 import connectToDb from "./db/db.js"
 import AdminRouter from "./Router/AdminRouter.js"
 const app = express()
-const port = 3000
+const port = 3000;
+// add these command in your project 
 import path from "path"
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'dist')));
