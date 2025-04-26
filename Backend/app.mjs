@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(cors())
 app.use(express.json())
-app.use('/admin', AdminRouter)
+app.use('/products', AdminRouter)
 console.log(connectToDb())
 app.get('/', (req, res) => {
   res.send('Hello World!')

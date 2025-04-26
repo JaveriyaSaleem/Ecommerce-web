@@ -4,20 +4,33 @@ const router = express.Router()
 
 
 
+
 // define the home page route
-router.get('/admin', (req, res) => {
-  res.send('data of users')
+router.get('/', async(req, res) => {
+
+  try{
+    const products = await product.find(); // finding all products
+    res.json(products); // sending all products as JSON
+  }catch(e){
+    res.status(500).json({ message: e.message });
+  }
 })
 // define the about route
 router.post('/', async (req, res) => {
+  try{
     let a = await product.create({
-        ProductName: req.body.productName,
-        Price: req.body.Price,
-        
-      })
-      a.save()
-      res.send(req.body)
-      console.log(req.body)
+      ProductName: req.body.productName,
+      Price: req.body.Price,
+      Image:req.body.Image
+      
+    })
+
+    res.send(a)
+    console.log(req.body)
+  }catch(e){
+    console.log(e)
+  }
+
 })
 router.delete('/', (req, res) => {
     res.send('deleting user')
