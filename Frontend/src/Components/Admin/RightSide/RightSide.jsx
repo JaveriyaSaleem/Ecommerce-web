@@ -6,6 +6,8 @@ import axios from "axios"
 
 const RightSide = () => {
   const [productApi, setproductApi] = useState([])
+  const [refreshPage, setrefreshPage] = useState(false)
+  
  
   const gettingProducts = async()=>{
     try{
@@ -17,12 +19,31 @@ const RightSide = () => {
       console.log(e)
     }
   }
+    const deleteProduct = async(id)=>{
+      try{
+        let idForDeletion = id
+        
+  
+  let response = await axios.delete(`http://localhost:3000/products/${idForDeletion}`)
+  console.log("Id Deleted!!!")
+  gettingProducts();
+      }catch(e){
+  
+      }
+    }
   
  useEffect(() => {
   gettingProducts();
+  setTimeout(()=>{
+    setrefreshPage(true)
+  },2000)
+  
 
 
  }, [])
+ useEffect(()=>{
+
+ },[refreshPage])
  
 
   return (
@@ -41,9 +62,18 @@ const RightSide = () => {
         <AddProduct/>
         <div className='grid grid-cols-4 gap-2'>
         {
-          (productApi?productApi.map((product,i)=>{
-            return  <ProductCard key={i} image={product.Image}  name={product.ProductName} price={product.Price}/>
-          }):"no product to show")
+          (refreshPage?productApi.map((product,i)=>(
+            <ProductCard onClick={()=>{deleteProduct(product._id)}} id={product._id} key={product._id} image={product.Image}  name={product.ProductName} price={product.Price}/>
+          )):
+<button type="button" className="flex items-center  py-2 rounded text-white disabled:opacity-50" disabled>
+Products Loading..<svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+  </svg>
+  
+</button>
+
+        )
         }
      
 

@@ -8,13 +8,16 @@ import { ImageContext } from './ImageContext';
 
 const AddProduct = () => {
     const { imageUrl } = useContext(ImageContext);
+    let saveProductRef = useRef()
+
     console.log("Selected image url is:", imageUrl);
     let productNameRef = useRef()
       let priceRef = useRef()
        const [isModalOpen, setIsModalOpen] = useState(false)
        const productUpload=async()=>{
-        console.log("heheh")
+
         console.log(productNameRef.current,priceRef.current)
+
             if(productNameRef.current && priceRef.current){
         try{
         
@@ -31,7 +34,11 @@ const AddProduct = () => {
             }
             setIsModalOpen(false)
            }
-        
+        const timeFunction =()=>{
+          setTimeout(() => {
+            productUpload()
+          }, 4000);
+        }
   return (
     <div>
       {/* 2️⃣ button to open the modal */}
@@ -61,9 +68,9 @@ const AddProduct = () => {
           <div><ImageInput/></div>
           {/* button for product uploading in backend  */}
           <button
-            type="button"
+            type="button" ref={saveProductRef}
             className="w-full bg-blue-600 text-white py-2 rounded"
-            onClick={productUpload}
+            onClick={timeFunction}
           >
             Save Product
           </button>

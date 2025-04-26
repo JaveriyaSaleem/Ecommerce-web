@@ -19,17 +19,17 @@ fd.append("file",fileRef.current.files[0])
         fetch((url),{
           method:"POST",
           body:fd,
-      }).then((response)=>response.json())
+      }).then(async(response)=>response.json())
       .then((data)=>{
           console.log(data)
-          setImageUrl(data.secure_url);
-          console.log(resourceUrl)
+      setImageUrl(data.secure_url);
+        console.log( resourceUrl)
         })
     }
   return (
-    <div>
+    <div className='flex flex-col'>
       <label htmlFor="imageInput">Add Image</label>
-      <input type="file" id='imageInput' onChange={imageUrl} ref={fileRef}/>
+      <input type="file" id='imageInput' onChange={imageUrl} ref={fileRef} className='border w-72 rounded-sm' />
     </div>
   )
 }
