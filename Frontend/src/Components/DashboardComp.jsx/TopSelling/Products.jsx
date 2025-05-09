@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../../assets/Images/1st image of top sellin.png'
+import image from '../../../assets/Images/1st image of top sellin.png'
 
 const Products = (props) => {
   return (

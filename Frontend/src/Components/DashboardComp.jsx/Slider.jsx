@@ -1,9 +1,9 @@
 import React from 'react'
-import Versace from '../assets/Images/Versace.png'
-import Zara from '../assets/Images/Zara.png'
-import Gucci from '../assets/Images/gucci.png'
-import Prada from '../assets/Images/prada.png'
-import CalvinKlein from '../assets/Images/CalvinKlein.png'
+import Versace from '../../assets/Images/Versace.png'
+import Zara from '../../assets/Images/Zara.png'
+import Gucci from '../../assets/Images/gucci.png'
+import Prada from '../../assets/Images/prada.png'
+import CalvinKlein from '../../assets/Images/CalvinKlein.png'
 
 const Slider = () => {
   return (

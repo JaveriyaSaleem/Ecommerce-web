@@ -3,6 +3,7 @@ import express from "express"
 import cors from "cors"
 import connectToDb from "./db/db.js"
 import AdminRouter from "./Router/AdminRouter.js"
+import SignupRouter from './Router/SignupRouter.js'
 const app = express()
 const port = 3000;
 // add these command in your project 
@@ -13,6 +14,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(cors())
 app.use(express.json())
 app.use('/products', AdminRouter)
+app.use('/auth', SignupRouter)
 console.log(connectToDb())
 app.get('/', (req, res) => {
   res.send('Hello World!')

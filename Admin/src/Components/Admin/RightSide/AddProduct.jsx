@@ -70,7 +70,7 @@ const AddProduct = () => {
           <button
             type="button" ref={saveProductRef}
             className="w-full bg-blue-600 text-white py-2 rounded"
-            onClick={timeFunction}
+            onClick={productUpload}
           >
             Save Product
           </button>

@@ -1,9 +1,43 @@
 import React from "react";
-import { NavLink,Link } from "react-router-dom";
-import Dashboard from "../Dashboard";
-import Login from "./Login";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from "axios"
+import Swal from 'sweetalert2';
+
 
 const SignupForm = () => {
+   const navigate = useNavigate();
+   const { register, handleSubmit, formState: { errors } } = useForm();
+   const onSubmit = async(data)=>{
+    console.log(data)
+    try{
+      // Check if user already exists
+      const responseGet = await axios.get(`http://localhost:3000/auth`);
+      console.log(responseGet.data)
+      const user = responseGet.data.find(user => user.email === data.email);
+
+      if (user) {
+        Swal.fire({
+          text: "User already exists please log in!",
+        });
+        navigate("/login");
+        return;
+      }
+      // if doesn't then add user 
+const respone = await axios.post("http://localhost:3000/auth",data)
+    console.log(respone.data,"data submitted")
+    Swal.fire({
+        icon: 'success',
+        title: 'Signup Successfully',
+        text: 'Please enter your credentials again at login page! 💖',
+      });
+     navigate("/login");
+    }catch(e){
+console.log(e)
+    }
+    
+   }
+  
   return (
     <section className=" relative py-6">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -26,7 +60,7 @@ const SignupForm = () => {
             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               Create an account
             </h1>
-            <form className="space-y-2 md:space-y-2" action="#">
+            <form className="space-y-2 md:space-y-2" action="#" onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 ">
                   Your Name
@@ -37,8 +71,14 @@ const SignupForm = () => {
                   id="Name"
                   className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 "
                   placeholder="Javeriya Saleem"
-                  required
+             
+                     {...register("username", {
+                      required: { value: true, message: "This field is required" },
+                      minLength: { value: 3, message: "Min length is 3" },
+                      maxLength: { value: 8, message: "Max length is 8" }
+                    })}
                 />
+                {errors.username && <div className='text-red-700'>{errors.username.message}</div>}
               </div>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">
@@ -50,8 +90,18 @@ const SignupForm = () => {
                   id="email"
                   className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 "
                   placeholder="name@company.com"
-                  required
+                 
+                  {...register("email", {
+                      required: { value: true, message: "This field is required" },
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Enter a valid email address"
+                      },
+                      minLength: { value: 5, message: "Min length is 5" },
+                      maxLength: { value: 50, message: "Max length is 50" }
+                    })}
                 />
+                {errors.email && <div className='text-red-700'>{errors.email.message}</div>}
               </div>
               <div>
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">
@@ -63,22 +113,19 @@ const SignupForm = () => {
                   id="password"
                   placeholder="••••••••"
                   className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 "
-                  required
+              
+                  {...register("password", {
+                        required: { value: true, message: "Password is required" },
+                        minLength: { value: 8, message: "Password must be at least 8 characters" },
+                        pattern: {
+                          value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/,
+                          message: "Password must include 1 uppercase, 1 number, and 1 special character"
+                        }
+                      })}
                 />
+                {errors.password && <div className='text-red-700'>{errors.password.message}</div>}
               </div>
-              <div>
-                <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 ">
-                  Confirm password
-                </label>
-                <input
-                  type="password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  "
-                  required
-                />
-              </div>
+
               <div className="flex items-start">
 
 
