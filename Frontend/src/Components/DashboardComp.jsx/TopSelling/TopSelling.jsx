@@ -4,13 +4,14 @@ import shirt1 from '../../../assets/Images/1st image of top sellin.png'
 import shirt2 from '../../../assets/Images/2nd image of top selling.png'
 import shirt3 from '../../../assets/Images/3rd image of top selling.png'
 import shirt4 from '../../../assets/Images/4th image of top selling.png'
+import { Link } from 'react-router'
 
 const TopSelling = () => {
   return (
     <div className='py-10'>
       <h1 className='text-[35px] font-black boldFont text-center'>TOP SELLING</h1>
       <div className='flex justify-end '>
-      <button className='cursor-pointer'>view all &gt;&gt;</button>
+      <Link className='cursor-pointer' to='/shopAll'>view all &gt;&gt;</Link>
       </div>
       <div className='flex items-center justify-between pt-2 pb-10'>
         <Products img={shirt1} name={'Vertical Striped Shirt'} price={"$212"}/>

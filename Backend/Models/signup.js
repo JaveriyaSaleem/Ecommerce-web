@@ -17,5 +17,5 @@ const ecommerceUserSchema = new mongoose.Schema({
         token:String
     
   });
-  const EcommerceUser = mongoose.model('Ecommerceuser', ecommerceUserSchema);
-  export default EcommerceUser
+  const Users = mongoose.model('users', ecommerceUserSchema);
+  export default Users

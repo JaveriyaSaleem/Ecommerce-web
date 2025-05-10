@@ -1,5 +1,5 @@
-import React from 'react'
-import image from '../../../assets/Images/1st image of top sellin.png'
+import { Link } from "react-router"
+
 
 const Products = (props) => {
   return (
@@ -9,7 +9,7 @@ const Products = (props) => {
         
         <h3 className='font-bold' >{props.name}</h3>
         <h3>{props.price}</h3>
-        <div><button className='border py-2 px-4 rounded-full bg-black text-white hover:scale-[1.07] transition duration-300 ease-in-out'>Add to Cart</button> <button className='border py-2 px-4 rounded-full hover:scale-[1.07] transition duration-300 ease-in-out'>View Item</button>
+        <div><button className='border py-2 px-4 rounded-full bg-black text-white hover:scale-[1.07] transition duration-300 ease-in-out'>Add to Cart</button> <Link to='/product'><button className='border py-2 px-4 rounded-full hover:scale-[1.07] transition duration-300 ease-in-out'>View Item</button></Link>
         </div>
       </div>
     </div>
