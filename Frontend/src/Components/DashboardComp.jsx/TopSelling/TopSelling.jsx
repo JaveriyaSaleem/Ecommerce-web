@@ -10,14 +10,15 @@ const TopSelling = () => {
   return (
     <div className='py-10'>
       <h1 className='text-[35px] font-black boldFont text-center'>TOP SELLING</h1>
-      <div className='flex justify-end '>
-      <Link className='cursor-pointer' to='/shopAll'>view all &gt;&gt;</Link>
-      </div>
+
       <div className='flex items-center justify-between pt-2 pb-10'>
         <Products img={shirt1} name={'Vertical Striped Shirt'} price={"$212"}/>
         <Products img={shirt2} name={'Courage Graphic T-Shirt'} price={"$145"}/>
         <Products img={shirt3} name={'Loose Fit Bermuda Shorts'} price={"$80"}/>
         <Products img={shirt4} name={'Faded Skinny Jeans'} price={"$210"}/>
+      </div>
+      <div className='flex justify-center'>
+        <Link className='cursor-pointer border py-2 px-10 rounded-full' to='/shopAll' >View All </Link>
       </div>
     </div>
   )
