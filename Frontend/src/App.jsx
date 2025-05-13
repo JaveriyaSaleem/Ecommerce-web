@@ -13,6 +13,8 @@ import Profile from './Pages/Profile.jsx';
 import ViewAllShop from './Pages/ViewAllShop.jsx';
 import ProductPage from './Pages/ProductPage.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
+import Cart from './Pages/Cart.jsx';
+import Checkout from './Pages/Checkout.jsx';
 
 const App = () => {
   
@@ -29,6 +31,8 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/shopAll" element={<ViewAllShop />} />
           <Route path="/product" element={<ProductPage />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/checkout" element={<Checkout/>} />
         </Routes>
       </Router>
       </ErrorBoundary>

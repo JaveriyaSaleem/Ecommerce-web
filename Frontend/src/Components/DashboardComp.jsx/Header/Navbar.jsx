@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -55,7 +56,10 @@ const Navbar = () => {
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
                   <div className='flex w-12 justify-between font-bold'>
-                  <FiShoppingCart />
+
+                  <Link to='/cart'>
+                    <FiShoppingCart />
+                  </Link>
                   <CgProfile />
                   </div>
         </div>
