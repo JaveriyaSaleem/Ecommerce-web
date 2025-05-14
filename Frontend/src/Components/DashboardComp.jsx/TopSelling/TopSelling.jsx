@@ -1,27 +1,111 @@
-import React from 'react'
-import Products from './Products'
-import shirt1 from '../../../assets/Images/1st image of top sellin.png'
-import shirt2 from '../../../assets/Images/2nd image of top selling.png'
-import shirt3 from '../../../assets/Images/3rd image of top selling.png'
-import shirt4 from '../../../assets/Images/4th image of top selling.png'
-import { Link } from 'react-router'
+// Dashboard below brand names
+import React, { useEffect, useState } from "react";
+import Products from "./Products";
+import { ToastContainer, Bounce, toast } from "react-toastify";
+import { Link } from "react-router";
+import axios from "axios";
+import { useContext } from "react";
+import { MyContext } from "../../../Context/MyContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const TopSelling = () => {
-  return (
-    <div className='py-10'>
-      <h1 className='text-[35px] font-black boldFont text-center'>TOP SELLING</h1>
+  const navigate = useNavigate();
+  const { setProductId } = useContext(MyContext); //context to get the productId
+  const [topSelling, settopSelling] = useState([]);
+  // function for getting products and sorting them to get random four products
+  const functionForGettingProducts = async () => {
+    const response = await axios.get("http://localhost:3000/products");
+    const allProducts = response.data;
+    console.log(response.data);
+    const getRandomProducts = (allProducts, count) => {
+      const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    };
+    const randomProducts = getRandomProducts(allProducts, 4);
+    settopSelling(randomProducts);
+  };
+  // useEffect to get the products when the component mounts
+  useEffect(() => {
+    functionForGettingProducts();
+  }, []);
+  // function for adding the product to the cart
+  const CartFunction = async (myproductId) => {
+    if (!localStorage.getItem("token")) {
+      Swal.fire({
+        text: "Please Login to Add the Product in the Cart",
+      });
+      navigate("/login");
+    } else {
+      const response = await axios.put(`http://localhost:3000/cart`, {
+        productId: myproductId,
+        userId: localStorage.getItem("token"),
+      });
+      console.log(response.data);
+      // toast for success
+      toast.success("Product added to cart!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    }
+  };
+  // function for getting the productId and navigating to the product page
+  const viewFunction = (productId) => {
+    console.log(productId);
+    setProductId(productId);
+    localStorage.setItem("productId", productId);
+    setTimeout(() => {
+      navigate("/product");
+    }, 2000);
+  };
 
-      <div className='flex items-center justify-between pt-2 pb-10'>
-        <Products img={shirt1} name={'Vertical Striped Shirt'} price={"$212"}/>
-        <Products img={shirt2} name={'Courage Graphic T-Shirt'} price={"$145"}/>
-        <Products img={shirt3} name={'Loose Fit Bermuda Shorts'} price={"$80"}/>
-        <Products img={shirt4} name={'Faded Skinny Jeans'} price={"$210"}/>
+  return (
+    <div className="py-10">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
+      <h1 className="text-[35px] font-black boldFont text-center">
+        TOP SELLING
+      </h1>
+
+      <div className="flex items-center justify-between pt-2 pb-10">
+        {topSelling.map((product) => (
+          <Products
+            functionForCart={() => CartFunction(product._id)}
+            key={product._id}
+            img={product.Image}
+            name={product.ProductName}
+            price={`$${product.Price}`}
+            onClick={() => viewFunction(product._id)}
+          />
+        ))}
       </div>
-      <div className='flex justify-center'>
-        <Link className='cursor-pointer border py-2 px-10 rounded-full' to='/shopAll' >View All </Link>
+      <div className="flex justify-center">
+        <Link
+          className="cursor-pointer border py-2 px-10 rounded-full"
+          to="/shopAll"
+        >
+          View All{" "}
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopSelling
+export default TopSelling;

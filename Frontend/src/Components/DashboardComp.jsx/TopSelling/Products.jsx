@@ -1,3 +1,4 @@
+// Component for Product in list of products
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2';
 
