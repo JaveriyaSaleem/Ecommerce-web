@@ -29,18 +29,7 @@ router.post('/', async (req, res) => {
   }
 
 })
-router.delete('/:id', async(req, res) => {
-  try {
-    const { id } = req.params;
-    const deletedProduct = await product.findByIdAndDelete(id);
-    if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
-    }
-    res.json({ message: 'Product deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-  })
+
   router.put('/', async(req, res) => {
     try{
    const { productId } = req.body;
@@ -54,6 +43,18 @@ router.delete('/:id', async(req, res) => {
     { new: true, upsert: true }, // Create a new document if it doesn't exist upsert
   )
   res.json(cartProducts);
+    }catch(e){
+        res.status(500).json({message:e.message})
+    }
+  })
+  router.delete('/:userId', async(req, res) => {
+    try{
+      const { userId } = req.params;
+      const cartProducts = await Cart.findOneAndDelete({ userId });
+          if (!cartProducts) {
+      return res.status(404).json({ message: "Cart not found for this user." });
+    }
+      res.json("Deleted Successfully");
     }catch(e){
         res.status(500).json({message:e.message})
     }

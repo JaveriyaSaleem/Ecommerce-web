@@ -50,6 +50,7 @@ const response = await axios.put(`http://localhost:3000/cart`, {
       console.log(response.data);
       setTotal(total);
       localStorage.setItem("totalPrice", total);
+      localStorage.setItem("products", JSON.stringify(filteredItems));
     }
 totalPrice()
 
