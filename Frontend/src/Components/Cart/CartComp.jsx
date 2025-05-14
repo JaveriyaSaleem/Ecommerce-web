@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button } from "../Button.jsx";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 const CartComp = () => {
   const [filteredItems, setfilteredItems] = useState([]);
+  const [ total, setTotal ] = useState(0);
   const cartItems = async () => {
     try {
       // products from db
@@ -32,13 +32,30 @@ const CartComp = () => {
       console.log(e);
     }
   };
-  // useEffect to get the cart items when the component mounts
+
+
+    // useEffect to get the cart items when the component mounts
   useEffect(() => {
     cartItems();
-  }, []);
 
-  // short calculation for the total price
-  const total = filteredItems.reduce((acc, item) => acc + item.Price * 1, 0);
+  }, []);
+  useEffect(() => {
+      const total = filteredItems.reduce((acc, item) => acc + item.Price * 1, 0);
+  console.log(total);
+    const totalPrice =async()=>{
+const response = await axios.put(`http://localhost:3000/cart`, {
+        totalPrice: total,
+        userId: localStorage.getItem("token"),
+      });
+      console.log(response.data);
+      setTotal(total);
+      localStorage.setItem("totalPrice", total);
+    }
+totalPrice()
+
+  }, [filteredItems])
+  
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">

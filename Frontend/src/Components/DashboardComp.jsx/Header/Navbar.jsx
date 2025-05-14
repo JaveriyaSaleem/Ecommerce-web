@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="">
+    <nav className="px-4">
       <div className="grid grid-cols-5 w-full py-4">
         {/* Logo */}
         <div className="">

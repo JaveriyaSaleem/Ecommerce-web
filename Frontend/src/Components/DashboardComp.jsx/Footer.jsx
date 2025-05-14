@@ -4,7 +4,7 @@ import { FaTwitter,FaFacebookF, FaInstagram  } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className='bg-[#f0f0f0] -mx-10 px-10 py-10'>
+    <div className='bg-[#f0f0f0] -mx-10 px-14 py-10'>
        {/* Logo */}
         <h1 className='text-[32px] font-extrabold boldFont w-40'>SHOP.CO</h1>
        <div className="flex justify-between py-3">

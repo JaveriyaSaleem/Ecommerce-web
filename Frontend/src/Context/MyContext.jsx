@@ -8,6 +8,7 @@ export const MyProvider = ({ children }) => {
   const [productId, setProductId] = useState("");
   const [api, setApi] = useState("");
 
+
   return (
     <MyContext.Provider value={{ productId, setProductId,api, setApi }}>
       {children}

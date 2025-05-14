@@ -45,11 +45,13 @@ router.delete('/:id', async(req, res) => {
     try{
    const { productId } = req.body;
    const { userId } = req.body;
+   const { totalPrice } = req.body;
   const cartProducts = await Cart.findOneAndUpdate(
     { userId },
     // { $push: { products: productId } }, 
-    { $addToSet: { products: productId } },
-    { new: true, upsert: true } // Create a new document if it doesn't exist upsert
+    { $addToSet: { products: productId }, totalPrice: totalPrice }, // Use $addToSet to avoid duplicates
+
+    { new: true, upsert: true }, // Create a new document if it doesn't exist upsert
   )
   res.json(cartProducts);
     }catch(e){
