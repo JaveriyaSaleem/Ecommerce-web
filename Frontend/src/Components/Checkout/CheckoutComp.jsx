@@ -16,12 +16,16 @@ const respone = await axios.post("http://localhost:3000/order",{...data, totalPr
         icon: 'success',
         title: 'Thanks for the Shopping',
         text: 'Your order has been placed!💖',
+      }).then(()=>{
+        navigate("/dashboard");
       });
 const userId = localStorage.getItem("token")
       const Deleting = await axios.delete(`http://localhost:3000/cart/${userId}`)
       console.log(Deleting.data,"deleted")
     localStorage.removeItem("products")
     localStorage.removeItem("totalPrice")
+    localStorage.removeItem("token")
+    localStorage.removeItem("productId")
     //  navigate("/dashboard");
     }catch(e){
 console.log(e)

@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  useEffect(() => { 
+if(localStorage.getItem("token")){
+  setShowLogin(true)}
+  else{
+    setShowLogin(false)
+  }},[])
 
+  
   return (
     <nav className="px-4">
       <div className="grid grid-cols-5 w-full py-4">
@@ -55,12 +62,15 @@ const Navbar = () => {
           </div>
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
-                  <div className='flex w-12 justify-between font-bold'>
+                  <div className='flex justify-between font-bold items-center gap-3'>
 
                   <Link to='/cart'>
-                    <FiShoppingCart />
+                    <FiShoppingCart className=""/>
                   </Link>
-                  <CgProfile />
+                  <div>
+                  {showLogin? <CgProfile />:<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
+                  </div>
+                 
                   </div>
         </div>
       </div>
