@@ -24,7 +24,7 @@ const userId = localStorage.getItem("token")
       console.log(Deleting.data,"deleted")
     localStorage.removeItem("products")
     localStorage.removeItem("totalPrice")
-    localStorage.removeItem("token")
+    // localStorage.removeItem("token")
     localStorage.removeItem("productId")
     //  navigate("/dashboard");
     }catch(e){

@@ -8,7 +8,7 @@ router.get('/', async(req, res) => {
 
   try{
     const orderList = await Order.find(); 
-    res.json("hey"); 
+    res.json(orderList); 
   }catch(e){
     res.status(500).json({ message: e.message });
   }

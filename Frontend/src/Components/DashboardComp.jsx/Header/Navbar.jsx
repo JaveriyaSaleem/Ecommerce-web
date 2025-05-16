@@ -62,13 +62,15 @@ if(localStorage.getItem("token")){
           </div>
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
-                  <div className='flex justify-between font-bold items-center gap-3'>
+                  <div className='flex justify-between font-bold items-center gap-3 '>
 
                   <Link to='/cart'>
-                    <FiShoppingCart className=""/>
+                    <FiShoppingCart className="text-[20px]"/>
                   </Link>
                   <div>
-                  {showLogin? <CgProfile />:<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
+                  {showLogin? <Link to='/profile'>
+                    <CgProfile className="text-[20px] cursor-pointer"/>
+                  </Link>:<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
                   </div>
                  
                   </div>
