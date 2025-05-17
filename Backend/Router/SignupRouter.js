@@ -41,6 +41,24 @@ router.post('/', async (req, res) => {
   }
 
 })
+router.patch('/:id', async (req, res) => {
+  try {
+    const { password, email, name } = req.body;
+    const { id } = req.params;
+const updatedData = {};
+if (password) updatedData.Password = password;
+if (email)updatedData.Email = email;
+if (name) updatedData.Username = name;
+    const updatedUser = await signup.findByIdAndUpdate(id,updatedData,
+      { new: true } //gives you updated user
+    );
+    res.status(200).json(updatedUser); // ✅ Respond back with updated user
+
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 router.delete('/:id', async(req, res) => {
   try {
     const { id } = req.params;

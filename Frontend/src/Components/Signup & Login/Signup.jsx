@@ -61,6 +61,7 @@ console.log(e)
               Create an account
             </h1>
             <form className="space-y-2 md:space-y-2" action="#" onSubmit={handleSubmit(onSubmit)}>
+              
             <div>
                 <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 ">
                   Your Name
@@ -73,7 +74,6 @@ console.log(e)
                   placeholder="Javeriya Saleem"
              
                      {...register("username", {
-                      required: { value: true, message: "This field is required" },
                       minLength: { value: 3, message: "Min length is 3" },
                       maxLength: { value: 8, message: "Max length is 8" }
                     })}
@@ -92,7 +92,6 @@ console.log(e)
                   placeholder="name@company.com"
                  
                   {...register("email", {
-                      required: { value: true, message: "This field is required" },
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Enter a valid email address"

@@ -1,13 +1,11 @@
 import React, { useEffect,useState } from "react";
 import axios from "axios";
+import { FaEdit } from "react-icons/fa";
+import ModalForm from "./ModalForm";
 
 
 const ProfilePage = () => {
-  const orderHistory = [
-    { id: "#1371288", date: "March 25, 2024", payment: "Paid", fulfillment: "Fulfilled", total: "Rs.1,065" },
-    { id: "#1121062", date: "November 13, 2023", payment: "Voided", fulfillment: "Fulfilled", total: "Rs.1,013" },
-    { id: "#900529", date: "July 06, 2023", payment: "Paid", fulfillment: "Fulfilled", total: "Rs.1,837" },
-  ];
+
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
@@ -83,15 +81,23 @@ OrderNumber}</td>
         <p>Karachi</p>
         <p>74000</p>
         <p>Pakistan</p>
-        <p>0310 2914909</p>
+        
+        <div className="flex items-center gap-2"><p>0310 2914909</p> 
+        {/* edit profile  */}
+        <div>
+          <ModalForm/>
+        </div></div>
+        
       </div>
 
       {/* 📬 View Address Button */}
-      <div className="mt-6">
+      <div className="mt-6 flex items-center">
         <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow">
-          VIEW ADDRESSES (2)
+         Logout 
         </button>
+       
       </div>
+
 
       {/* ⬆️ Scroll Button */}
       <button
