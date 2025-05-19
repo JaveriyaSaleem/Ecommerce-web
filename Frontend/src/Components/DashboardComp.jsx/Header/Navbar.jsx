@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
+import axios from "axios";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
+  const cart=async()=>{
+    try{
+      const response = await axios.get(`http://localhost:3000/cart`);
+      const cart = response.data;
+      const filterCart = response.data.filter((item)=>item.userId===localStorage.getItem("token"))
+      console.log("data found",filterCart);
+      setCartItems(filterCart);
+      
+      // console.log(cart);
+    }catch(e){
+      console.log(e)
+    }
+  }
   useEffect(() => { 
+    cart()
 if(localStorage.getItem("token")){
   setShowLogin(true)}
+  
   else{
     setShowLogin(false)
   }},[])
+
 
   
   return (
@@ -63,10 +81,10 @@ if(localStorage.getItem("token")){
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
                   <div className='flex justify-between font-bold items-center gap-3 '>
+<CartIcon itemCount={cartItems[0]?.products?.length || 0} />
 
-                  <Link to='/cart'>
-                    <FiShoppingCart className="text-[20px]"/>
-                  </Link>
+                  
+                  
                   <div>
                   {showLogin? <Link to='/profile'>
                     <CgProfile className="text-[20px] cursor-pointer"/>

@@ -7,11 +7,13 @@ import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../Context/MyContext.jsx";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const TopSelling = () => {
   const navigate = useNavigate();
   const { setProductId } = useContext(MyContext); //context to get the productId
   const [topSelling, settopSelling] = useState([]);
+  const [updatedCart, setupdatedCart] = useState([])
   // function for getting products and sorting them to get random four products
   const functionForGettingProducts = async () => {
     const response = await axios.get("http://localhost:3000/products");
@@ -41,6 +43,7 @@ const TopSelling = () => {
         userId: localStorage.getItem("token"),
       });
       console.log(response.data);
+      setupdatedCart(response.data);
       // toast for success
       toast.success("Product added to cart!", {
         position: "top-right",
@@ -64,6 +67,10 @@ const TopSelling = () => {
       navigate("/product");
     }, 2000);
   };
+  useEffect(() => {
+    
+  }, [updatedCart])
+  
 
   return (
     <div className="py-10">

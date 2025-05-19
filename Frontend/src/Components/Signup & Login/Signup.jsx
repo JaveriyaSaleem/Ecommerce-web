@@ -2,11 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios"
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 
 
 const SignupForm = () => {
    const navigate = useNavigate();
+     const [showPassword, setShowPassword] = useState(false);
    const { register, handleSubmit, formState: { errors } } = useForm();
    const onSubmit = async(data)=>{
     console.log(data)
@@ -106,22 +108,30 @@ console.log(e)
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 "
-              
-                  {...register("password", {
-                        required: { value: true, message: "Password is required" },
-                        minLength: { value: 8, message: "Password must be at least 8 characters" },
-                        pattern: {
-                          value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/,
-                          message: "Password must include 1 uppercase, 1 number, and 1 special character"
-                        }
-                      })}
-                />
+                <div className="flex justify-between border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5 dark:border-gray-600 ">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="text-gray-900 text-sm focus:ring-0 focus:outline-0 block w-full "
+                    {...register("password", {
+                          required: { value: true, message: "Password is required" },
+                          minLength: { value: 8, message: "Password must be at least 8 characters" },
+                          pattern: {
+                            value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/,
+                            message: "Password must include 1 uppercase, 1 number, and 1 special character"
+                          }
+                        })}
+                  />
+                                    <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="transform text-gray-600"
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </button>
+                </div>
                 {errors.password && <div className='text-red-700'>{errors.password.message}</div>}
               </div>
 
