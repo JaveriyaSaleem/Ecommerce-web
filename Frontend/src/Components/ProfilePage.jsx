@@ -2,41 +2,60 @@ import React, { useEffect,useState } from "react";
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 import ModalForm from "./ModalForm";
+import { set } from "react-hook-form";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+
 
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
 
   const [order, setOrder] = useState([]);
+  const [user, setUser] = useState();
 
-  useEffect(() => {
-    const functionOnMount=async()=>{
+useEffect(() => {
+  const functionOnMount = async () => {
+    try {
+      // 1. Fetch users
+      const responseUser = await axios.get('http://localhost:3000/auth');
+      const saveUser = responseUser.data;
 
-// finding user in database to fetch user order history
-const responseUser = await axios.get('http://localhost:3000/auth')
-const saveUser = responseUser.data
-const findingUser = saveUser.find((user)=>{if(user.token === localStorage.getItem('token')){return user}
-else{
-  console.log("notfound")
-}})
-console.log("userFound",findingUser)
-// once found fetch order history
-const response = await axios.get('http://localhost:3000/order')
-const saveData = response.data
-const filteringOrderHistoryOfUser = saveData.filter((item)=>{if(item.Email===findingUser.email){
-  return item
-}else{
-  console.log("not found")
-}})
-console.log("order History",filteringOrderHistoryOfUser)
-setOrder(filteringOrderHistoryOfUser)
+      // 2. Find current user by token
+      const findingUser = saveUser.find(
+        (user) => user.token === localStorage.getItem('token')
+      );
 
+      if (findingUser) {
+        console.log("userFound", findingUser);
+        setUser(findingUser);
+
+        // 3. Fetch orders
+        const response = await axios.get('http://localhost:3000/order');
+        const saveData = response.data;
+
+        // 4. Filter order history
+        const filteringOrderHistoryOfUser = saveData.filter(
+          (item) => item.Email === findingUser.email
+        );
+
+        console.log("order History", filteringOrderHistoryOfUser);
+        setOrder(filteringOrderHistoryOfUser);
+      } else {
+        console.log("notfound");
+      }
+    } catch (error) {
+      console.error("Something went wrong fetching user or order data 😢", error);
     }
-functionOnMount()
+  };
 
-
-
-  }, [])
+  functionOnMount();
+}, []);
   
+useEffect(() => {
+console.log("dekh aya ",user)
+}, [user])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -62,7 +81,7 @@ functionOnMount()
               <tr key={index}>
                 <td className="py-2 px-4 border">#{order.
 OrderNumber}</td>
-                <td className="py-2 px-4 border">{order.Date}</td>
+                <td className="py-2 px-4 border">{moment(order.Date).format('LL')}</td>
                 <td className="py-2 px-4 border">{order.PaymentMethod}</td>
                 <td className="py-2 px-4 border">Fulfilled</td>
                 <td className="py-2 px-4 border">${order.TotalPrice
@@ -75,23 +94,31 @@ OrderNumber}</td>
 
       {/* 👤 Account Details */}
       <h2 className="text-xl font-bold mt-8 mb-4">ACCOUNT DETAILS</h2>
-      <div className="text-gray-700 space-y-1">
-        <p className="font-semibold">Javeriya Saleem</p>
-        <p>Ghulam Hussain Street, Shama Palace A2, Punjabi Club, Kharadar.</p>
-        <p>Karachi</p>
-        <p>74000</p>
-        <p>Pakistan</p>
-        
-        <div className="flex items-center gap-2"><p>0310 2914909</p> 
+      {user? <div className="text-gray-700 space-y-1">
+      
+        <div className="flex items-center gap-2">
+                <p className="font-semibold">{user.Username}</p>
         {/* edit profile  */}
         <div>
           <ModalForm/>
         </div></div>
+        <p>{user.email}<span className="text-red-600">(you can't change email)</span></p>
+        {/* <p>Ghulam Hussain Street, Shama Palace A2, Punjabi Club, Kharadar.</p>
+        <p>Karachi</p>
+        <p>74000</p>
+        <p>Pakistan</p> */}
+  
         
-      </div>
+      </div> : <p className="text-gray-700">No user found</p>}
+     
 
       {/* 📬 View Address Button */}
-      <div className="mt-6 flex items-center">
+      <div className="mt-6 flex items-center" onClick={()=>
+        {localStorage.removeItem('token');
+          setTimeout(() => {
+               navigate('/login');
+          }, 2000);
+     }}>
         <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow">
          Logout 
         </button>

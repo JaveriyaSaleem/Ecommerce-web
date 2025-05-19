@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const navigate = useNavigate();
-  const { productId } = useContext(MyContext);
   const [myproductId, setMyProductId] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState("");

@@ -41,15 +41,15 @@ router.post('/', async (req, res) => {
   }
 
 })
-router.patch('/:id', async (req, res) => {
+router.put('/:_id', async (req, res) => {
   try {
-    const { password, email, name } = req.body;
-    const { id } = req.params;
+    const { password, email, username } = req.body;
+    const { _id } = req.params;
 const updatedData = {};
 if (password) updatedData.Password = password;
-if (email)updatedData.Email = email;
-if (name) updatedData.Username = name;
-    const updatedUser = await signup.findByIdAndUpdate(id,updatedData,
+if (email)updatedData.email = email;
+if (username) updatedData.Username = username;
+    const updatedUser = await signup.findByIdAndUpdate(_id,updatedData,
       { new: true } //gives you updated user
     );
     res.status(200).json(updatedUser); // ✅ Respond back with updated user
