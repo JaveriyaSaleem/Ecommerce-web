@@ -15,7 +15,7 @@ const Navbar = () => {
   const cart=async()=>{
     try{
       const response = await axios.get(`http://localhost:3000/cart`);
-      const cart = response.data;
+      // const cart = response.data;
       const filterCart = response.data.filter((item)=>item.userId===localStorage.getItem("token"))
       console.log("data found",filterCart);
       setCartIconItems(filterCart);

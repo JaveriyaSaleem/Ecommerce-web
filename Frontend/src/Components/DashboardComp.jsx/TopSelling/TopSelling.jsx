@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Products from "./Products";
 import { ToastContainer, Bounce, toast } from "react-toastify";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../Context/MyContext.jsx";
@@ -11,9 +11,9 @@ import Swal from "sweetalert2";
 
 const TopSelling = () => {
   const navigate = useNavigate();
-  const { setProductId,setCartItems } = useContext(MyContext); //context to get the productId
+  const { setProductId, setCartItems } = useContext(MyContext); //context to get the productId[[]]
   const [topSelling, settopSelling] = useState([]);
-  const [updatedCart, setupdatedCart] = useState([])
+  const [updatedCart, setupdatedCart] = useState([]);
   // function for getting products and sorting them to get random four products
   const functionForGettingProducts = async () => {
     const response = await axios.get("http://localhost:3000/products");
@@ -38,13 +38,43 @@ const TopSelling = () => {
       });
       navigate("/login");
     } else {
+      const cart = await axios.get(`http://localhost:3000/cart`);
+      const filterCart = cart.data.filter(
+        (cart) => cart.userId === localStorage.getItem("token")
+      );
+      console.log("cart data", filterCart);
+      let getProduct;
+      if(filterCart.length >0 ) {
+getProduct = filterCart[0].products.find(
+  (product) => product.id === myproductId
+  
+);}
+console.log("product found", getProduct);
+      
+if (getProduct) {
+      
       const response = await axios.put(`http://localhost:3000/cart`, {
-        productId: myproductId,
+        productId: {
+          id: myproductId,
+          quantity: getProduct.quantity + 1,
+        },
         userId: localStorage.getItem("token"),
       });
-      console.log("updated data",response.data);
       setupdatedCart(response.data);
       setCartItems(response.data);
+    } else {
+        const response = await axios.put(`http://localhost:3000/cart`, {
+          productId: {
+            id: myproductId,
+            quantity: 1,
+          },
+          userId: localStorage.getItem("token"),
+        });
+        console.log("updated data", response.data);
+        setupdatedCart(response.data);
+        setCartItems(response.data);
+      }
+
       // toast for success
       toast.success("Product added to cart!", {
         position: "top-right",
@@ -68,10 +98,7 @@ const TopSelling = () => {
       navigate("/product");
     }, 2000);
   };
-  useEffect(() => {
-    
-  }, [updatedCart])
-  
+
 
   return (
     <div className="py-10">
