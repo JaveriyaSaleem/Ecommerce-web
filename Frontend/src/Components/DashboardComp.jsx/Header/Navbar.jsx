@@ -4,9 +4,13 @@ import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import axios from "axios";
+import { useContext } from "react";
+import { MyContext } from "../../../Context/MyContext.jsx"
+import DropdownMenu from "./Dropdown.jsx";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartIconItems,setCartIconItems]= useState([])
+  const {cartItems} = useContext(MyContext);
   const [showLogin, setShowLogin] = useState(false);
   const cart=async()=>{
     try{
@@ -14,9 +18,7 @@ const Navbar = () => {
       const cart = response.data;
       const filterCart = response.data.filter((item)=>item.userId===localStorage.getItem("token"))
       console.log("data found",filterCart);
-      setCartItems(filterCart);
-      
-      // console.log(cart);
+      setCartIconItems(filterCart);
     }catch(e){
       console.log(e)
     }
@@ -30,7 +32,9 @@ if(localStorage.getItem("token")){
     setShowLogin(false)
   }},[])
 
-
+useEffect(() => {
+cart()
+}, [cartItems])
   
   return (
     <nav className="px-4">
@@ -81,14 +85,14 @@ if(localStorage.getItem("token")){
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>
                   <div className='flex justify-between font-bold items-center gap-3 '>
-<CartIcon itemCount={cartItems[0]?.products?.length || 0} />
+<CartIcon itemCount={cartIconItems[0]?.products?.length || 0} />
 
                   
                   
                   <div>
-                  {showLogin? <Link to='/profile'>
-                    <CgProfile className="text-[20px] cursor-pointer"/>
-                  </Link>:<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
+                  {showLogin? 
+  <DropdownMenu/>
+                  :<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
                   </div>
                  
                   </div>

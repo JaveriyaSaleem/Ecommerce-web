@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 const TopSelling = () => {
   const navigate = useNavigate();
-  const { setProductId } = useContext(MyContext); //context to get the productId
+  const { setProductId,setCartItems } = useContext(MyContext); //context to get the productId
   const [topSelling, settopSelling] = useState([]);
   const [updatedCart, setupdatedCart] = useState([])
   // function for getting products and sorting them to get random four products
@@ -42,8 +42,9 @@ const TopSelling = () => {
         productId: myproductId,
         userId: localStorage.getItem("token"),
       });
-      console.log(response.data);
+      console.log("updated data",response.data);
       setupdatedCart(response.data);
+      setCartItems(response.data);
       // toast for success
       toast.success("Product added to cart!", {
         position: "top-right",
