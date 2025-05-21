@@ -9,36 +9,38 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const navigate = useNavigate();
+    const { setProductId,CartFunction,updatedCart, setupdatedCart } = useContext(MyContext); //context to get the productId
+
   const [myproductId, setMyProductId] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState("");
   // function for cart
-  const CartFunction = async () => {
-    if (!localStorage.getItem("token")) {
-      toast.error("Please Login to Add the Product in the Cart");
+  // const CartFunction = async () => {
+  //   if (!localStorage.getItem("token")) {
+  //     toast.error("Please Login to Add the Product in the Cart");
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 3500);
-    } else {
-      const response = await axios.put(`http://localhost:3000/cart`, {
-        productId: myproductId,
-        userId: localStorage.getItem("token"),
-      });
-      console.log(response.data);
-      toast.success("Product added to cart!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
-    }
-  };
+  //     setTimeout(() => {
+  //       navigate("/login");
+  //     }, 3500);
+  //   } else {
+  //     const response = await axios.put(`http://localhost:3000/cart`, {
+  //       productId: myproductId,
+  //       userId: localStorage.getItem("token"),
+  //     });
+  //     console.log(response.data);
+  //     toast.success("Product added to cart!", {
+  //       position: "top-right",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: false,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //       transition: Bounce,
+  //     });
+  //   }
+  // };
 
   const getProduct = async () => {
     try {
@@ -115,7 +117,7 @@ const Product = () => {
                 </select>
               </div>
               <button
-                onClick={CartFunction}
+                onClick={()=>{CartFunction(myproductId)}}
                 className="bg-black text-white hover:bg-white border border-black hover:text-black px-6 py-2 rounded mb-6 transition"
               >
                 Add to Bag

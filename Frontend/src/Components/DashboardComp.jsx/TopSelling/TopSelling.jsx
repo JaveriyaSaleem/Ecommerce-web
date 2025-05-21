@@ -11,9 +11,8 @@ import Swal from "sweetalert2";
 
 const TopSelling = () => {
   const navigate = useNavigate();
-  const { setProductId, setCartItems } = useContext(MyContext); //context to get the productId[[]]
+  const { setProductId,CartFunction,updatedCart, setupdatedCart } = useContext(MyContext); //context to get the productId[[]]
   const [topSelling, settopSelling] = useState([]);
-  const [updatedCart, setupdatedCart] = useState([]);
   // function for getting products and sorting them to get random four products
   const functionForGettingProducts = async () => {
     const response = await axios.get("http://localhost:3000/products");
@@ -30,65 +29,7 @@ const TopSelling = () => {
   useEffect(() => {
     functionForGettingProducts();
   }, []);
-  // function for adding the product to the cart
-  const CartFunction = async (myproductId) => {
-    if (!localStorage.getItem("token")) {
-      Swal.fire({
-        text: "Please Login to Add the Product in the Cart",
-      });
-      navigate("/login");
-    } else {
-      const cart = await axios.get(`http://localhost:3000/cart`);
-      const filterCart = cart.data.filter(
-        (cart) => cart.userId === localStorage.getItem("token")
-      );
-      console.log("cart data", filterCart);
-      let getProduct;
-      if(filterCart.length >0 ) {
-getProduct = filterCart[0].products.find(
-  (product) => product.id === myproductId
-  
-);}
-console.log("product found", getProduct);
-      
-if (getProduct) {
-      
-      const response = await axios.put(`http://localhost:3000/cart`, {
-        productId: {
-          id: myproductId,
-          quantity: getProduct.quantity + 1,
-        },
-        userId: localStorage.getItem("token"),
-      });
-      setupdatedCart(response.data);
-      setCartItems(response.data);
-    } else {
-        const response = await axios.put(`http://localhost:3000/cart`, {
-          productId: {
-            id: myproductId,
-            quantity: 1,
-          },
-          userId: localStorage.getItem("token"),
-        });
-        console.log("updated data", response.data);
-        setupdatedCart(response.data);
-        setCartItems(response.data);
-      }
 
-      // toast for success
-      toast.success("Product added to cart!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
-    }
-  };
   // function for getting the productId and navigating to the product page
   const viewFunction = (productId) => {
     console.log(productId);

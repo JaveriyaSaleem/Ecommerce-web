@@ -40,9 +40,10 @@ cart()
     <nav className="px-4">
       <div className="grid grid-cols-5 w-full py-4">
         {/* Logo */}
-        <div className="">
-        <h1 className='text-[32px] font-extrabold boldFont w-40'>SHOP.CO</h1>
-        </div>
+        <Link to="/dashboard">
+          
+          <h1 className='text-[32px] font-extrabold boldFont w-40'>SHOP.CO</h1>
+        </Link>
 
         {/* Hamburger menu for mobile */}
         <div className="md:hidden ">
@@ -70,17 +71,10 @@ cart()
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center justify-between  col-span-4">
           <div className="flex justify-center gap-10">
-          <a href="#" className=""><select name="Shop" id="" value="Shop">
-          <option value="Shop">Shop</option>
-          <option value="Casual">Casual</option>
-          <option value="Formal">Formal</option>
-          <option value="Party">Party</option>
-          <option value="Gym">Gym</option>
-          
-          </select></a>
-          <a href="#" className=" hover: hover:font-bold">On Sale</a>
-          <a href="#" className=" hover: hover:font-bold">New Arrivals</a>
-          <a href="#" className=" hover: hover:font-bold">Brands</a>
+          <Link to="/shopAll"><a className="">Shop</a></Link>
+          <Link to="/shopAll"><a className=" hover: hover:font-bold">On Sale</a></Link>
+          <Link to="/shopAll"><a className=" hover: hover:font-bold">New Arrivals</a></Link>
+          <Link to="/shopAll"><a className=" hover: hover:font-bold">Brands</a></Link>
           </div>
 
            <div className='hidden border rounded-full w-80 items-center justify-items-start py-2 px-2'><IoIosSearch className=''/> <input type="text" placeholder='Search for products..' className='ps-2 outline-0'/></div>

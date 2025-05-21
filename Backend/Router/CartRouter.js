@@ -30,23 +30,41 @@ router.post('/', async (req, res) => {
 
 })
 
-  router.put('/', async(req, res) => {
-    try{
-   const { productId } = req.body;
-   const { userId } = req.body;
-   const { totalPrice } = req.body;
-  const cartProducts = await Cart.findOneAndUpdate(
-    { userId },
-    // { $push: { products: productId } }, 
-    { $addToSet: { products: productId }, totalPrice: totalPrice }, // Use $addToSet to avoid duplicates
+  router.put('/', async (req, res) => {
+  try {
+    const { productId, userId } = req.body;
 
-    { new: true, upsert: true }, // Create a new document if it doesn't exist upsert
-  )
-  res.json(cartProducts);
-    }catch(e){
-        res.status(500).json({message:e.message})
+    const updatedCart = await Cart.updateOne(
+      {
+        userId,
+        'products.id': productId.id, // find matching product
+      },
+      {
+        $set: {
+          'products.$.quantity': productId.quantity, // update the quantity of matched product
+        },
+      }
+    );
+
+    // If no matching product found, then push new one
+    if (updatedCart.modifiedCount === 0) {
+      await Cart.updateOne(
+        { userId },
+        {
+          $push: {
+            products: productId,
+          },
+        },
+        { upsert: true }
+      );
     }
-  })
+
+    res.status(200).json({ message: 'Cart updated successfully 💕' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Something went wrong 💔' });
+  }
+});
   router.delete('/:userId', async(req, res) => {
     try{
       const { userId } = req.params;
