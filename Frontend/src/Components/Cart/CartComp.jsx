@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const CartComp = () => {
   const [filteredItems, setfilteredItems] = useState([]);
-  const [ total, setTotal ] = useState(0);
+  const [ totalPriceCart, setTotalPriceCart ] = useState(0);
   const cartItems = async () => {
     try {
       // products from db
@@ -15,18 +15,27 @@ const CartComp = () => {
       const userChecking = gettingCart.data.find(
         (user) => user.userId === localStorage.getItem("token")
       );
+      console.log("user",userChecking)
       // if yes compare the products with cart and come with filtered products
       if (userChecking) {
-        const filterProducts = gettingProducts.data.filter((product) => {
-          return userChecking.products.some(
-            (cartItem) => cartItem === product._id
-          );
-        });
-        console.log(filterProducts);
+const filterProducts = gettingProducts.data
+  .filter((product) =>
+    userChecking.products.some((cartItem) => cartItem.id === product._id)
+  )
+  .map((product) => {
+    const cartItem = userChecking.products.find(
+      (item) => item.id === product._id
+    );
+    return {
+      ...product,
+      quantity: cartItem?.quantity || 1, // default 1 if not found
+    };
+  });
+        console.log("product Found to show on cart",filterProducts);
         // set the filtered products to state
         setfilteredItems(filterProducts);
 
-        console.log(userChecking);
+        console.log("userChecking",userChecking.products);
       }
     } catch (e) {
       console.log(e);
@@ -40,15 +49,16 @@ const CartComp = () => {
 
   }, []);
   useEffect(() => {
-      const total = filteredItems.reduce((acc, item) => acc + item.Price * 1, 0);
+      const total = filteredItems.reduce((acc, item) => acc + item.Price * item.quantity, 0);
   console.log(total);
+  setTotalPriceCart(total);
     const totalPrice =async()=>{
-const response = await axios.put(`http://localhost:3000/cart`, {
+const response = await axios.put(`http://localhost:3000/cart/priceUpdate`, {
         totalPrice: total,
         userId: localStorage.getItem("token"),
       });
       console.log(response.data);
-      setTotal(total);
+      setTotalPriceCart(total);
       localStorage.setItem("totalPrice", total);
       localStorage.setItem("products", JSON.stringify(filteredItems));
     }
@@ -79,12 +89,12 @@ totalPrice()
                   <h3 className="text-lg font-medium">{item.ProductName}</h3>
                   <p className="text-gray-500">
                     {/* if more than 1 item then show the price for now I have 1 cuz I haven't applied function of adding same product more than once */}
-                    ${(item.Price * 1).toFixed(2)}
+                    ${(item.Price * 1).toFixed(2)} x {item.quantity}
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-semibold">
-                    ${(item.Price * 1).toFixed(2)}
+                    ${(item.Price * item.quantity).toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -92,7 +102,7 @@ totalPrice()
             {/* Total Price  */}
             <div className="flex justify-between items-center pt-6 border-t mt-4">
               <p className="text-xl font-bold">Total:</p>
-              <p className="text-xl font-bold">${total.toFixed(2)}</p>
+              <p className="text-xl font-bold">${totalPriceCart.toFixed(2)}</p>
             </div>
             <div className="text-right mt-6">
               {/* Link to checkout page  */}

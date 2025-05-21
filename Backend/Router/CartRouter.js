@@ -65,6 +65,19 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'Something went wrong 💔' });
   }
 });
+router.put('/priceUpdate',async(req,res)=>{
+  try{
+const{userId,totalPrice} = req.body
+const updateCart = await Cart.findOneAndUpdate(
+    { userId: userId },                 //  Find by userId
+  { totalPrice: totalPrice },         //  Update totalPrice
+  { new: true }                       // Return the updated document
+)
+res.status(200).json({message:updateCart})
+  }catch(e){
+    res.status(500).json({error:"something went wrong"})
+  }
+})
   router.delete('/:userId', async(req, res) => {
     try{
       const { userId } = req.params;

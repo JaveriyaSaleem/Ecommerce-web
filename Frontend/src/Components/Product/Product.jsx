@@ -117,7 +117,7 @@ const Product = () => {
                 </select>
               </div>
               <button
-                onClick={()=>{CartFunction(myproductId)}}
+                onClick={()=>{CartFunction(myproductId)}} 
                 className="bg-black text-white hover:bg-white border border-black hover:text-black px-6 py-2 rounded mb-6 transition"
               >
                 Add to Bag
