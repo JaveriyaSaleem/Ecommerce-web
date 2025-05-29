@@ -15,7 +15,7 @@ const TopSelling = () => {
   const [topSelling, settopSelling] = useState([]);
   // function for getting products and sorting them to get random four products
   const functionForGettingProducts = async () => {
-    const response = await axios.get("http://localhost:3000/products");
+    const response = await axios.get("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/products");
     const allProducts = response.data;
     console.log(response.data);
     const getRandomProducts = (allProducts, count) => {

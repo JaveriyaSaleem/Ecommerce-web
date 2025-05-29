@@ -9,9 +9,9 @@ const CartComp = () => {
   const cartItems = async () => {
     try {
       // products from db
-      const gettingProducts = await axios("http://localhost:3000/products");
+      const gettingProducts = await axios("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/products");
       // cart of user from db
-      const gettingCart = await axios.get("http://localhost:3000/cart");
+      const gettingCart = await axios.get("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart");
       // checking if user exists
       const userChecking = gettingCart.data.find(
         (user) => user.userId === localStorage.getItem("token")
@@ -47,7 +47,7 @@ const deleteItem = async (productId)=>{
   console.log("delete item",productId);
   console.log(filteredItems,"itemsss")
   try{
-const response = await axios.put(`http://localhost:3000/cart/removeProduct`, {
+const response = await axios.put(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart/removeProduct`, {
         productId: productId,
         userId: localStorage.getItem("token"),
       });
@@ -72,7 +72,7 @@ const response = await axios.put(`http://localhost:3000/cart/removeProduct`, {
   console.log(total);
   setTotalPriceCart(total);
     const totalPrice =async()=>{
-const response = await axios.put(`http://localhost:3000/cart/priceUpdate`, {
+const response = await axios.put(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart/priceUpdate`, {
         totalPrice: total,
         userId: localStorage.getItem("token"),
       });

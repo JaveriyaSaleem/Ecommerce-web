@@ -18,7 +18,7 @@ const ModalForm = () => {
   const closeModal = () => setIsOpen(false);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3000/auth");
+      const response = await axios.get("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth");
       const data = response.data;
       const gettingUser = data.find((user) => {
         if (user.token === localStorage.getItem("token")) return user;
@@ -32,7 +32,7 @@ const ModalForm = () => {
 
   const onSubmit = async (data) => {
     const response = await axios.put(
-      `http://localhost:3000/auth/${user._id}`,
+      `https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth/${user._id}`,
       data
     );
     console.log("user", user);

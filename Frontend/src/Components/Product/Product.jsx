@@ -14,37 +14,11 @@ const Product = () => {
   const [myproductId, setMyProductId] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState("");
-  // function for cart
-  // const CartFunction = async () => {
-  //   if (!localStorage.getItem("token")) {
-  //     toast.error("Please Login to Add the Product in the Cart");
-
-  //     setTimeout(() => {
-  //       navigate("/login");
-  //     }, 3500);
-  //   } else {
-  //     const response = await axios.put(`http://localhost:3000/cart`, {
-  //       productId: myproductId,
-  //       userId: localStorage.getItem("token"),
-  //     });
-  //     console.log(response.data);
-  //     toast.success("Product added to cart!", {
-  //       position: "top-right",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: false,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //       transition: Bounce,
-  //     });
-  //   }
-  // };
+  
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/products`);
+      const response = await axios.get(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/products`);
       console.log(response.data);
       setProducts(response.data);
 

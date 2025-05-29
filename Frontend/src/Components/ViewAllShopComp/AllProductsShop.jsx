@@ -34,7 +34,7 @@ const AllProductsShop = () => {
 
   const productsData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/products");
       setProducts(response.data);
       setAllProducts(response.data);
     } catch (error) {

@@ -20,7 +20,7 @@ export const MyProvider = ({ children }) => {
       });
       navigate("/login");
     } else {
-      const cart = await axios.get(`http://localhost:3000/cart`);
+      const cart = await axios.get(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart`);
       const filterCart = cart.data.filter(
         (cart) => cart.userId === localStorage.getItem("token")
       );
@@ -35,7 +35,7 @@ console.log("product found", getProduct);
       
 if (getProduct) {
       
-      const response = await axios.put(`http://localhost:3000/cart`, {
+      const response = await axios.put(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart`, {
         productId: {
           id: myproductId,
           quantity: getProduct.quantity + 1,
@@ -45,7 +45,7 @@ if (getProduct) {
       setupdatedCart(response.data);
       setCartItems(response.data);
     } else {
-        const response = await axios.put(`http://localhost:3000/cart`, {
+        const response = await axios.put(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart`, {
           productId: {
             id: myproductId,
             quantity: 1,

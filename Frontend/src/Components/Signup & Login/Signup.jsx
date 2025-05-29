@@ -14,7 +14,7 @@ const SignupForm = () => {
     console.log(data)
     try{
       // Check if user already exists
-      const responseGet = await axios.get(`http://localhost:3000/auth`);
+      const responseGet = await axios.get(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth`);
       console.log(responseGet.data)
       const user = responseGet.data.find(user => user.email === data.email);
 
@@ -26,7 +26,7 @@ const SignupForm = () => {
         return;
       }
       // if doesn't then add user 
-const respone = await axios.post("http://localhost:3000/auth",data)
+const respone = await axios.post("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth",data)
     console.log(respone.data,"data submitted")
     Swal.fire({
         icon: 'success',

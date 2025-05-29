@@ -15,7 +15,7 @@ const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
   const cart = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/cart`);
+      const response = await axios.get(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart`);
       // const cart = response.data;
       const filterCart = response.data.filter(
         (item) => item.userId === localStorage.getItem("token")

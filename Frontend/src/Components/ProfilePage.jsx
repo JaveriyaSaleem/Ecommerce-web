@@ -18,7 +18,7 @@ useEffect(() => {
   const functionOnMount = async () => {
     try {
       // 1. Fetch users
-      const responseUser = await axios.get('http://localhost:3000/auth');
+      const responseUser = await axios.get('https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth');
       const saveUser = responseUser.data;
 
       // 2. Find current user by token
@@ -31,7 +31,7 @@ console.log("findingUser", findingUser);
         setUser(findingUser);
 
         // 3. Fetch orders
-        const response = await axios.get('http://localhost:3000/order');
+        const response = await axios.get('https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/order');
         const saveData = response.data;
 
         // 4. Filter order history

@@ -11,7 +11,7 @@ const Login = () => {
      const onSubmit = async (data) => {
     try {
       // Check if user already exists
-      const responseGet = await axios.get(`http://localhost:3000/auth`);
+      const responseGet = await axios.get(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth`);
       const user = responseGet.data.find(user => user.email === data.email);
       const checkEmail = responseGet.data.find(checkEmail => checkEmail.email === data.email || checkEmail.password ==data.password);
       if (!user) {

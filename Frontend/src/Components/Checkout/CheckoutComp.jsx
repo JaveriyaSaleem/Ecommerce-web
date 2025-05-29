@@ -10,7 +10,7 @@ const CheckoutComp = () => {
     console.log(data)
     try{
       // 1. Fetch users
-      const responseUser = await axios.get('http://localhost:3000/auth');
+      const responseUser = await axios.get('https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/auth');
       const saveUser = responseUser.data;
 
       // 2. Find current user by token
@@ -18,7 +18,7 @@ const CheckoutComp = () => {
         (user) => user.token === localStorage.getItem('token')
       );
       console.log("userFound Comp Page", findingUser);
-const respone = await axios.post("http://localhost:3000/order",{...data,emailRegistered:findingUser.email,totalPrice: localStorage.getItem("totalPrice"),userId:localStorage.getItem("token"), products:JSON.parse(localStorage.getItem("products"))})
+const respone = await axios.post("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/order",{...data,emailRegistered:findingUser.email,totalPrice: localStorage.getItem("totalPrice"),userId:localStorage.getItem("token"), products:JSON.parse(localStorage.getItem("products"))})
     console.log(respone.data,"data submitted")
     Swal.fire({
         icon: 'success',
@@ -28,7 +28,7 @@ const respone = await axios.post("http://localhost:3000/order",{...data,emailReg
         navigate("/");
       });
 const userId = localStorage.getItem("token")
-      const Deleting = await axios.delete(`http://localhost:3000/cart/${userId}`)
+      const Deleting = await axios.delete(`https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/cart/${userId}`)
       console.log(Deleting.data,"deleted")
     localStorage.removeItem("products")
     localStorage.removeItem("totalPrice")
