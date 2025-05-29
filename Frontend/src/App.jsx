@@ -25,9 +25,9 @@ const App = () => {
   <ErrorBoundary>
    <Router>
         <Routes>
-          <Route path="/" element={<SignupForm />} />
+          <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/shopAll" element={<ViewAllShop />} />
           <Route path="/product" element={<ProductPage />} />

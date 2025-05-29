@@ -24,7 +24,8 @@ router.post('/', async (req, res) => {
         Address : req.body.address,  
         TotalPrice:req.body.totalPrice,
         Products:req.body.products,
-        userId:req.body.userId   
+        userId:req.body.userId,
+        RegisteredEmail:req.body.emailRegistered
     })
     res.send(OrderDetail)
     console.log(req.body)

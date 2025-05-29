@@ -53,7 +53,7 @@ function DropdownMenu() {
         <div className="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-28 dark:bg-black">
           <ul className="py-2 text-sm text-gray-200 rounded-2xl">
             <li>
-              <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <Link to="/" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 Dashboard
               </Link>
             </li>

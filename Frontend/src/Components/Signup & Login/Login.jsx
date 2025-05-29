@@ -20,7 +20,7 @@ const Login = () => {
           title: 'Error!',
           text: "User not found please create an account",
         });
-        navigate("/");
+        navigate("/signup");
       } 
          else {
           // Both email and password are correct
@@ -31,7 +31,7 @@ const Login = () => {
           localStorage.setItem("token", user.token);
           // console.log(user.token);
           
-          navigate("/dashboard");
+          navigate("/");
         }}
 
 
@@ -119,7 +119,7 @@ const Login = () => {
                 Login
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don't have an account? <a onClick={()=>navigate('/')} className="hover:font-semibold text-primary-600 hover:underline hover:text-black hover:cursor-pointer">Signup here!</a>
+                Don't have an account? <a onClick={()=>navigate('/signup')} className="hover:font-semibold text-primary-600 hover:underline hover:text-black hover:cursor-pointer">Signup here!</a>
               </p>
             </form>
           </div>

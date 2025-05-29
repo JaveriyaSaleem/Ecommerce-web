@@ -9,15 +9,23 @@ const CheckoutComp = () => {
     const onSubmit = async(data)=>{
     console.log(data)
     try{
-      
-const respone = await axios.post("http://localhost:3000/order",{...data, totalPrice: localStorage.getItem("totalPrice"),userId:localStorage.getItem("token"), products:JSON.parse(localStorage.getItem("products"))})
+      // 1. Fetch users
+      const responseUser = await axios.get('http://localhost:3000/auth');
+      const saveUser = responseUser.data;
+
+      // 2. Find current user by token
+      const findingUser = saveUser.find(
+        (user) => user.token === localStorage.getItem('token')
+      );
+      console.log("userFound Comp Page", findingUser);
+const respone = await axios.post("http://localhost:3000/order",{...data,emailRegistered:findingUser.email,totalPrice: localStorage.getItem("totalPrice"),userId:localStorage.getItem("token"), products:JSON.parse(localStorage.getItem("products"))})
     console.log(respone.data,"data submitted")
     Swal.fire({
         icon: 'success',
         title: 'Thanks for the Shopping',
         text: 'Your order has been placed!💖',
       }).then(()=>{
-        navigate("/dashboard");
+        navigate("/");
       });
 const userId = localStorage.getItem("token")
       const Deleting = await axios.delete(`http://localhost:3000/cart/${userId}`)

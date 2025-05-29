@@ -1,4 +1,5 @@
 // Hero below header
+import {Link} from "react-router-dom";
 import HeroImg from "../../assets/Images/HeroImg.png";
 
 const Hero = () => {
@@ -13,11 +14,13 @@ const Hero = () => {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
-        <div className="">
-          <button className="hover:cursor-pointer px-10 py-3 bg-black text-white rounded-full text-[14px]">
-            Shop Now{" "}
-          </button>
-        </div>
+   
+          <Link to='/shopAll'>
+            <button className="hover:cursor-pointer px-10 py-3 bg-black text-white rounded-full text-[14px]">
+              Shop Now{" "}
+            </button>
+          </Link>
+      
         <div className="flex justify-between">
           <div>
             <h1 className="text-[40px] font-bold">200+</h1>

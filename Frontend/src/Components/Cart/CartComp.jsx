@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "../Button.jsx";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 const CartComp = () => {
   const [filteredItems, setfilteredItems] = useState([]);
   const [ totalPriceCart, setTotalPriceCart ] = useState(0);
@@ -41,7 +42,25 @@ const filterProducts = gettingProducts.data
       console.log(e);
     }
   };
+  // remove item 
+const deleteItem = async (productId)=>{
+  console.log("delete item",productId);
+  console.log(filteredItems,"itemsss")
+  try{
+const response = await axios.put(`http://localhost:3000/cart/removeProduct`, {
+        productId: productId,
+        userId: localStorage.getItem("token"),
+      });
+      console.log(response.data,"deleted item");
+      // filter the deleted item from the state
+      const updatedItems = filteredItems.filter(item => item._id !== productId);
+      setfilteredItems(updatedItems);
 
+  }catch(e){
+    console.log(e)
+  }
+
+}
 
     // useEffect to get the cart items when the component mounts
   useEffect(() => {
@@ -85,8 +104,13 @@ totalPrice()
                   alt={item.ProductName}
                   className="w-24 h-24 object-cover rounded-xl"
                 />
-                <div className="flex-1">
+                <div className="flex-1 items-center">
+                  <div className="flex items-center gap-2">
                   <h3 className="text-lg font-medium">{item.ProductName}</h3>
+                  <div onClick={()=>{deleteItem(item._id)}}>
+                    <MdDelete />
+                  </div>
+                  </div>
                   <p className="text-gray-500">
                     {/* if more than 1 item then show the price for now I have 1 cuz I haven't applied function of adding same product more than once */}
                     ${(item.Price * 1).toFixed(2)} x {item.quantity}
@@ -97,6 +121,7 @@ totalPrice()
                     ${(item.Price * item.quantity).toFixed(2)}
                   </p>
                 </div>
+          
               </div>
             ))}
             {/* Total Price  */}

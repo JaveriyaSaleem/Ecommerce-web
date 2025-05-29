@@ -24,31 +24,7 @@ const AllProductsShop = () => {
       navigate("/product");
     }, 2000);
   };
-  // const CartFunction = async (myproductId) => {
-  //   if (!localStorage.getItem("token")) {
-  //     Swal.fire({
-  //       text: "Please Login to Add the Product in the Cart",
-  //     });
-  //     navigate("/login");
-  //   } else {
-  //     const response = await axios.put(`http://localhost:3000/cart`, {
-  //       productId: myproductId,
-  //       userId: localStorage.getItem("token"),
-  //     });
-  //     console.log(response.data);
-  //     toast.success("Product added to cart!", {
-  //       position: "top-right",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: false,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //       transition: Bounce,
-  //     });
-  //   }
-  // };
+  
   const filterFunction = (e) => {
     console.log(e.target.innerText);
     setFilter(e.target.innerText);

@@ -50,7 +50,7 @@ console.log(e)
           
           <div className="p-6 space-y-2 md:space-y-2 sm:p-8">
 
-          <Link to='/dashboard'>
+          <Link to='/'>
             <button
                   type="submit"
                   className="cursor-pointer w-full text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

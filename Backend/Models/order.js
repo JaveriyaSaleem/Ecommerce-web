@@ -9,6 +9,7 @@ const OrderSchema = new mongoose.Schema({
    Products:Array,
    userId:String,
    Date:{type:Date, default:Date.now},
+   RegisteredEmail:String
   });
   const Order = mongoose.model('dbOrder', OrderSchema);
   export default Order

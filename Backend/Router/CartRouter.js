@@ -69,12 +69,35 @@ router.put('/priceUpdate',async(req,res)=>{
   try{
 const{userId,totalPrice} = req.body
 const updateCart = await Cart.findOneAndUpdate(
-    { userId: userId },                 //  Find by userId
+  { userId: userId },                 //  Find by userId
   { totalPrice: totalPrice },         //  Update totalPrice
   { new: true }                       // Return the updated document
 )
 res.status(200).json({message:updateCart})
   }catch(e){
+    res.status(500).json({error:"something went wrong"})
+  }
+})
+router.put('/removeProduct',async(req,res)=>{
+  const { userId, productId } = req.body;
+  try{
+const updatedCart = await Cart.findOneAndUpdate(
+      { userId }, 
+      {
+        $pull: {
+          products: { id: productId } , // remove the product by ID from products array
+        },
+      },
+      { new: true }
+    );
+
+    if (!updatedCart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    res.status(200).json(updatedCart);
+  }
+  catch(e){
     res.status(500).json({error:"something went wrong"})
   }
 })

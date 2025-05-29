@@ -25,7 +25,7 @@ useEffect(() => {
       const findingUser = saveUser.find(
         (user) => user.token === localStorage.getItem('token')
       );
-
+console.log("findingUser", findingUser);
       if (findingUser) {
         console.log("userFound", findingUser);
         setUser(findingUser);
@@ -36,7 +36,7 @@ useEffect(() => {
 
         // 4. Filter order history
         const filteringOrderHistoryOfUser = saveData.filter(
-          (item) => item.Email === findingUser.email
+          (item) => item.RegisteredEmail === findingUser.email
         );
 
         console.log("order History", filteringOrderHistoryOfUser);

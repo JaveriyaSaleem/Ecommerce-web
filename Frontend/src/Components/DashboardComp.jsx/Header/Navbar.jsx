@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../Context/MyContext.jsx"
 import DropdownMenu from "./Dropdown.jsx";
 const Navbar = () => {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const [cartIconItems,setCartIconItems]= useState([])
   const {cartItems} = useContext(MyContext);
@@ -40,7 +41,7 @@ cart()
     <nav className="px-4">
       <div className="grid grid-cols-5 w-full py-4">
         {/* Logo */}
-        <Link to="/dashboard">
+        <Link to="/">
           
           <h1 className='text-[32px] font-extrabold boldFont w-40'>SHOP.CO</h1>
         </Link>
@@ -86,7 +87,7 @@ cart()
                   <div>
                   {showLogin? 
   <DropdownMenu/>
-                  :<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]">Login/Register</button>}
+                  :<button className="font-light border px-3 py-1 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition  text-[14px]" onClick={()=>{navigate('/login')}}>Login/Register</button>}
                   </div>
                  
                   </div>
