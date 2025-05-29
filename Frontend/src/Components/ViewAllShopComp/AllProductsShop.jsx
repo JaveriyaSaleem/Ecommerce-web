@@ -119,10 +119,10 @@ const AllProductsShop = () => {
             {/* Modal Filters (Mobile Only) */}
             {showFilterModal && (
               <div className="fixed inset-0 bg-white bg-opacity-50 z-50 flex justify-center items-center">
-                <div className="bg-white p-5 rounded-lg w-4/5 max-w-xs">
+                <div className="bg-white p-5 rounded-lg w-30 text-start">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-bold">Filters</h3>
-                    <button onClick={() => setShowFilterModal(false)}>✖</button>
+                    <button onClick={() => setShowFilterModal(false)} className="text-black">✖</button>
                   </div>
                   <div className="flex flex-col text-[#aeaeae] space-y-3">
                     {["t-shirts", "shirts", "jeans", "shorts"].map((item) => (
