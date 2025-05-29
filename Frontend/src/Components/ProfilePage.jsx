@@ -66,31 +66,29 @@ console.log("dekh aya ",user)
       {/* 🧾 Order History */}
       <h2 className="text-[16px] font-bold mb-4">ORDER HISTORY</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full text-center border border-gray-200">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="py-2 px-4 border">ORDER</th>
-              <th className="py-2 px-4 border">DATE</th>
-              <th className="py-2 px-4 border">PAYMENT STATUS</th>
-              <th className="py-2 px-4 border">FULFILLMENT STATUS</th>
-              <th className="py-2 px-4 border">TOTAL</th>
-            </tr>
-          </thead>
-          <tbody>
-            {order.map((order, index) => (
-              <tr key={index}>
-                <td className="py-2 px-4 border">#{order.
-OrderNumber}</td>
-                <td className="py-2 px-4 border">{moment(order.Date).format('LL')}</td>
-                <td className="py-2 px-4 border">{order.PaymentMethod}</td>
-                <td className="py-2 px-4 border">Fulfilled</td>
-                <td className="py-2 px-4 border">${order.TotalPrice
-}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  <table className="min-w-full text-xs sm:text-sm text-center border border-gray-200">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="py-2 px-2 sm:px-4 border">ORDER</th>
+        <th className="py-2 px-2 sm:px-4 border">DATE</th>
+        <th className="py-2 px-2 sm:px-4 border">PAYMENT</th>
+        <th className="py-2 px-2 sm:px-4 border">STATUS</th>
+        <th className="py-2 px-2 sm:px-4 border">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {order.map((order, index) => (
+        <tr key={index}>
+          <td className="py-2 px-2 sm:px-4 border text-[11px] sm:text-sm">#{order.OrderNumber}</td>
+          <td className="py-2 px-2 sm:px-4 border text-[11px] sm:text-sm">{moment(order.Date).format('LL')}</td>
+          <td className="py-2 px-2 sm:px-4 border text-[11px] sm:text-sm">{order.PaymentMethod}</td>
+          <td className="py-2 px-2 sm:px-4 border text-[11px] sm:text-sm">Fulfilled</td>
+          <td className="py-2 px-2 sm:px-4 border text-[11px] sm:text-sm">${order.TotalPrice}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
       {/* 👤 Account Details */}
       <h2 className="text-xl font-bold mt-8 mb-4">ACCOUNT DETAILS</h2>

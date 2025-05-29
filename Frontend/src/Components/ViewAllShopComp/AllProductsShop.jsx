@@ -1,56 +1,58 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Navbar from "../DashboardComp.jsx/Header/Navbar";
 import { IoIosArrowForward } from "react-icons/io";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import Products from "../DashboardComp.jsx/TopSelling/Products";
 import axios from "axios";
-import { useContext } from "react";
 import { MyContext } from "../../Context/MyContext.jsx";
 import ErrorBoundary from "../../ErrorBoundary.jsx";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const AllProductsShop = () => {
   const navigate = useNavigate();
-  const { setProductId,CartFunction,updatedCart, setupdatedCart } = useContext(MyContext); //context to get the productId
+  const { setProductId, CartFunction } = useContext(MyContext);
+
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [filter, setFilter] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+
   const viewFunction = (productId) => {
-    console.log(productId);
     setProductId(productId);
     localStorage.setItem("productId", productId);
     setTimeout(() => {
       navigate("/product");
     }, 2000);
   };
-  
-  const filterFunction = (e) => {
-    console.log(e.target.innerText);
-    setFilter(e.target.innerText);
-  };
-  let productsData = async () => {
-    let response = await axios.get("http://localhost:3000/products");
-    console.log(response.data);
-    setProducts(response.data);
-    setAllProducts(response.data);
-  };
-  useEffect(
-    () => {
-      if (filter) {
-        let filteredProducts = allProducts.filter(
-          (product) => product.type === filter
-        );
-        console.log(filteredProducts);
 
-        setProducts(filteredProducts);
-      } else {
-        setProducts(allProducts);
-      }
-    },
-    [filter],
-    [allProducts]
-  );
+  const filterFunction = (e) => {
+    const selectedFilter = e.target.innerText;
+    setFilter(selectedFilter);
+  };
+
+  const productsData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/products");
+      setProducts(response.data);
+      setAllProducts(response.data);
+    } catch (error) {
+      toast.error("Error fetching products");
+    }
+  };
+
+  useEffect(() => {
+    if (filter) {
+      const filteredProducts = allProducts.filter(
+        (product) => product.type === filter
+      );
+      setProducts(filteredProducts);
+    } else {
+      setProducts(allProducts);
+    }
+  }, [filter]);
+
   useEffect(() => {
     productsData();
   }, []);
@@ -70,75 +72,94 @@ const AllProductsShop = () => {
         theme="colored"
         transition={Bounce}
       />
+
       <ErrorBoundary>
         <div className="px-3">
           <Navbar />
-          <div className=" pb-6">
-            <p className="flex items-center fixed">
-              <span className="text-[#888383]">Home</span> <IoIosArrowForward />{" "}
-              Shop All
+          <div className="pb-6">
+            <p className="flex items-center md:fixed">
+              <span className="text-[#888383]">Home</span>{" "}
+              <IoIosArrowForward /> Shop All
             </p>
           </div>
-          <main className="grid grid-cols-12 gap-10 pt-5">
-            {/* left side  */}
-            <div className="col-span-2">
-              <div className="border  rounded-2xl  h-100 fixed w-40 px-2 py-4">
+
+          {/* Filter Icon Button for Mobile */}
+          <div className="md:hidden flex justify-end mb-4">
+            <button
+              className="text-black text-xl p-2 border rounded-md"
+              onClick={() => setShowFilterModal(true)}
+            >
+              <HiOutlineAdjustments />
+            </button>
+          </div>
+
+          <main className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-5">
+            {/* Sidebar Filters (Desktop Only) */}
+            <div className="hidden md:block col-span-2">
+              <div className="border rounded-2xl fixed w-40 px-2 py-4">
                 <h3 className="flex items-center justify-between border-b pb-4">
-                  <span className="">Filters</span>{" "}
+                  <span>Filters</span>
                   <HiOutlineAdjustments className="text-[#aeaeae] text-[20px]" />
                 </h3>
                 <div className="flex flex-col text-[#aeaeae] pt-4">
-                  {/* t-shirt  */}
-                  <div
-                    onClick={filterFunction}
-                    className="flex items-center justify-between cursor-pointer hover:text-black transition"
-                  >
-                    <button>t-shirts </button>
-                    <IoIosArrowForward />
-                  </div>
-                  {/* shirts  */}
-                  <div
-                    onClick={filterFunction}
-                    className="flex items-center justify-between cursor-pointer hover:text-black transition"
-                  >
-                    <button>shirts </button>
-                    <IoIosArrowForward />
-                  </div>
-                  {/* jeans  */}
-                  <div
-                    onClick={filterFunction}
-                    className="flex items-center justify-between cursor-pointer hover:text-black transition"
-                  >
-                    <button>jeans </button>
-                    <IoIosArrowForward />
-                  </div>
-                  {/* shorts  */}
-                  <div
-                    onClick={filterFunction}
-                    className="flex items-center justify-between cursor-pointer hover:text-black transition"
-                  >
-                    <button>shorts</button>
-                    <IoIosArrowForward />
-                  </div>
+                  {["t-shirts", "shirts", "jeans", "shorts"].map((item) => (
+                    <div
+                      key={item}
+                      onClick={filterFunction}
+                      className="flex items-center justify-between cursor-pointer hover:text-black transition"
+                    >
+                      <button>{item}</button>
+                      <IoIosArrowForward />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-            {/* right side  */}
 
-            <div className="col-span-8">
+            {/* Modal Filters (Mobile Only) */}
+            {showFilterModal && (
+              <div className="fixed inset-0 bg-white bg-opacity-50 z-50 flex justify-center items-center">
+                <div className="bg-white p-5 rounded-lg w-4/5 max-w-xs">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-bold">Filters</h3>
+                    <button onClick={() => setShowFilterModal(false)}>✖</button>
+                  </div>
+                  <div className="flex flex-col text-[#aeaeae] space-y-3">
+                    {["t-shirts", "shirts", "jeans", "shorts"].map((item) => (
+                      <button
+                        key={item}
+                        onClick={(e) => {
+                          filterFunction(e);
+                          setShowFilterModal(false);
+                        }}
+                        className="flex justify-between items-center hover:text-black transition"
+                      >
+                        {item} <IoIosArrowForward />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Product Section */}
+            <div className="md:col-span-8 col-span-12">
               <h1 className="text-[32px] font-bold"></h1>
-              <div className="grid grid-cols-3 gap-3">
-                {products.length > 0 ?( products.map((product, id) => (
-                  <Products
-                    key={id}
-                    img={product.Image}
-                    name={product.ProductName}
-                    price={`$${product.Price}`}
-                    functionForCart={() => CartFunction(product._id)}
-                    onClick={() => viewFunction(product._id)}
-                  />
-                ))):<div>Loading..</div>}
-               
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {products.length > 0 ? (
+                  products.map((product, id) => (
+                    <Products
+                      key={id}
+                      img={product.Image}
+                      name={product.ProductName}
+                      price={`$${product.Price}`}
+                      functionForCart={() => CartFunction(product._id)}
+                      onClick={() => viewFunction(product._id)}
+                    />
+                  ))
+                ) : (
+                  <div>Loading..</div>
+                )}
               </div>
             </div>
           </main>
