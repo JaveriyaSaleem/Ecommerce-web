@@ -6,14 +6,16 @@ import TopSelling from '../Components/DashboardComp.jsx/TopSelling/TopSelling.js
 import Footer from '../Components/DashboardComp.jsx/Footer.jsx'
 const Dashboard = () => {
   return (
-    <div className='px-6'>
-      <Navbar/>
-      <Hero/>
-      <Slider/>
-      <TopSelling/>
-      <Footer/>
-
-    </div>
+      <div>
+        <Navbar/>
+            <div className='px-6'>
+        <Hero/>
+        <Slider/>
+        <TopSelling/>
+        
+            </div>
+        <Footer/>
+      </div>
   )
 }
 

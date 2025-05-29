@@ -60,7 +60,8 @@ const TopSelling = () => {
         TOP SELLING
       </h1>
 
-      <div className="flex flex-col md:flex-row items-center justify-between pt-20 pb-10 gap-2 w-full ">
+      <div className="flex flex-col md:flex-row items-center justify-between pt-20 pb-10 gap-2 w-full " data-aos="fade-up"
+  data-aos-delay="200">
         {topSelling.map((product) => (
           <Products
             functionForCart={() => CartFunction(product._id)}

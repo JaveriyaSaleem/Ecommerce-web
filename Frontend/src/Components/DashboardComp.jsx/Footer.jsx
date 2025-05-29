@@ -15,7 +15,7 @@ const Footer = () => {
         <div className='flex  justify-around md:justify-between pt-10 md:p-0 md:gap-3'><FaTwitter className='transition duration-150 ease-in-out text-[35px] hover:scale-[1.07] py-2 px-1 border rounded-full bg-black text-white'/> <FaFacebookF className='transition duration-duration-150 ease-in-out text-[35px] hover:scale-[1.07] py-2 px-1 border rounded-full bg-black text-white'/> <FaInstagram className='transition duration-duration-150 ease-in-out text-[35px] hover:scale-[1.07] py-2 px-1 border rounded-full bg-black text-white'/></div> 
         </div>
         <div className='text-center'>
-         <p>Made by <a href='https://github.com/JaveriyaSaleem' className='font-bold'>@JaveriyaSaleem 💖</a></p>
+         <p>Made with 💖 by <a href='https://github.com/JaveriyaSaleem' className='font-bold'>@JaveriyaSaleem </a></p>
         </div>
     </div>
   )

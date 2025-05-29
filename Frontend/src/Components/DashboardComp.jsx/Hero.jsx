@@ -7,17 +7,20 @@ const Hero = () => {
       
       {/* Text Content */}
       <div className="flex flex-col gap-4 items-center md:items-start">
-        <h1 className="text-[32px] sm:text-[36px] md:text-[44px] font-black boldFont md:w-5/6">
+        <h1 className="text-[32px] sm:text-[36px] md:text-[44px] font-black boldFont md:w-5/6"  data-aos="fade-up"
+    data-aos-delay="100">
           FIND CLOTHES THAT MATCHES YOUR STYLE
         </h1>
-        <p className="md:w-4/5 pb-4">
+        <p className="md:w-4/5 pb-4"  data-aos="fade-up"
+    data-aos-delay="300">
           Browse through our diverse range of meticulously crafted garments,
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
 
         <Link to="/shopAll">
-          <button className="hover:cursor-pointer px-10 py-3 bg-black text-white rounded-full text-[14px]">
+          <button className="hover:cursor-pointer px-10 py-3 bg-black text-white rounded-full text-[14px] hover:scale-105 transition"  data-aos="zoom-in"
+    data-aos-delay="500">
             Shop Now
           </button>
         </Link>

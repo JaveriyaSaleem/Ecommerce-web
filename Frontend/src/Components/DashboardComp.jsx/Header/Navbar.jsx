@@ -40,8 +40,8 @@ const Navbar = () => {
   }, [cartItems]);
 
   return (
-    <nav className="px-4">
-      <div className="flex justify-between items-center md:grid md:grid-cols-5 w-full py-4">
+    <nav className="">
+      <div className="flex justify-between gap-5 items-end md:grid md:grid-cols-5 w-full py-4 px-2">
         {/* Logo */}
         <Link to="/">
           <h1 className="text-[32px] font-extrabold boldFont w-40">SHOP.CO</h1>
@@ -120,7 +120,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="flex justify-center pb-10 absolute top-20 left-0 w-full bg-white shadow-md space-y-10 py-6 md:hidden">
+        <div className="flex justify-center items-center pb-10 absolute top-20 left-0 w-full bg-white shadow-md space-y-10 py-6 md:hidden">
           <div className="flex flex-col items-center gap-4">
             <Link to="/">
               <a className=" font-bold">

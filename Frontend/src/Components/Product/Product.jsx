@@ -92,25 +92,25 @@ const Product = () => {
           <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8">
             {/* Image Section */}
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center ">
               <img
                 src={filteredProduct.Image}
                 alt="Product"
-                className="w-96 h-96 object-contain p-4 bg-gray-50"
+                className="w-96 sm:h-96 object-contain p-4 bg-gray-50"
               />
             </div>
             {/* Details Section */}
-            <div>
-              <h1 className="text-3xl font-bold mb-2">
+            <div className="">
+              <h1 className="text-[20px] sm:text-3xl font-black mb-2">
                 {filteredProduct.ProductName}
               </h1>
-              <p className="text-xl font-semibold text-gray-700 mb-4">{`$${filteredProduct.Price}`}</p>
+              <p className="text-[16px] sm:text-xl font-semibold text-gray-700 mb-4">{`$${filteredProduct.Price}`}</p>
 
               <div className="mb-4">
                 <label className="text-sm font-medium text-gray-600 block mb-1">
                   Size
                 </label>
-                <select className="border rounded px-4 py-2 w-40 focus:outline-none focus:ring-2 focus:ring-black">
+                <select className="border rounded px-2 py-1 sm:w-40 focus:outline-none focus:ring-2 focus:ring-black">
                   <option value="small">Small</option>
                   <option value="medium">Medium</option>
                   <option value="large">Large</option>
@@ -122,13 +122,13 @@ const Product = () => {
               >
                 Add to Bag
               </button>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 mb-4 text-[14px] sm:text-[16px]">
                 Discover effortless everyday style with this must-have
                 essential, crafted for comfort, versatility, and confidence. A
                 staple piece that fits right into your wardrobe.
               </p>
               <h2 className="font-semibold text-lg mb-2">Highlights</h2>
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
+              <ul className="list-disc list-inside text-gray-600 space-y-1 text-[14px] sm:text-[16px]">
                 <li>Premium quality fabric for long-lasting wear</li>
                 <li>Comfortable fit perfect for daily use</li>
                 <li>Minimalist yet trendy design</li>
