@@ -1,28 +1,20 @@
-// Slides of Brands in dashboard
 import Versace from "../../assets/Images/Versace.png";
 import Zara from "../../assets/Images/Zara.png";
 import Gucci from "../../assets/Images/gucci.png";
 import Prada from "../../assets/Images/prada.png";
 import CalvinKlein from "../../assets/Images/CalvinKlein.png";
+import './dashboard.css'
+
+const brandImages = [Versace, Zara, Gucci, Prada, CalvinKlein];
 
 const Slider = () => {
   return (
-    <div className="bg-black -mx-10 flex justify-between px-10 py-10">
-      <figure>
-        <img src={Versace} alt="" />
-      </figure>
-      <figure>
-        <img src={Zara} alt="" />
-      </figure>
-      <figure>
-        <img src={Gucci} alt="" />
-      </figure>
-      <figure>
-        <img src={Prada} alt="" />
-      </figure>
-      <figure>
-        <img src={CalvinKlein} alt="" />
-      </figure>
+    <div className="overflow-hidden bg-black py-5  -mx-10 px-10">
+      <div className="flex gap-10 animate-marquee w-max">
+        {brandImages.concat(brandImages).map((img, index) => (
+          <img key={index} src={img} alt={`brand-${index}`} className="h-5 sm:h-7 md:h-8 object-contain" />
+        ))}
+      </div>
     </div>
   );
 };
