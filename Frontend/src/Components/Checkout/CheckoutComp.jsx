@@ -42,7 +42,7 @@ console.log(e)
    }
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-20">
-      <div className="w-full max-w-lg bg-white shadow-lg rounded-2xl p-6 space-y-6">
+      <div className="w-full mx-2 sm:max-w-lg bg-white shadow-lg rounded-2xl p-6 space-y-6">
         <h2 className="text-2xl font-semibold text-center">Checkout</h2>
         <form  className="space-y-4" action="#" onSubmit={handleSubmit(onSubmit)}>
 

@@ -46,7 +46,9 @@ const Navbar = () => {
         <Link to="/">
           <h1 className="text-[32px] font-extrabold boldFont w-40">SHOP.CO</h1>
         </Link>
-
+  <div className="block md:hidden">
+    <CartIcon itemCount={cartIconItems[0]?.products?.length || 0} />
+  </div>
         {/* Hamburger menu for mobile */}
         <div className="md:hidden ">
           <button

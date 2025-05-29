@@ -90,14 +90,14 @@ totalPrice()
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6">
-        <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center sm:text-start">Your Cart</h2>
         {/* FILTERED ITEMS  */}
         {filteredItems.length > 0 ? (
           <div className="space-y-4">
             {filteredItems.map((item) => (
               <div
                 key={item._id}
-                className="flex items-center gap-4 border-b pb-4"
+                className="flex flex-col sm:flex-row  items-center gap-4 border-b pb-4"
               >
                 <img
                   src={item.Image}
@@ -106,18 +106,18 @@ totalPrice()
                 />
                 <div className="flex-1 items-center">
                   <div className="flex items-center gap-2">
-                  <h3 className="text-lg font-medium">{item.ProductName}</h3>
+                  <h3 className="text-[12px] sm:text-lg font-medium">{item.ProductName}</h3>
                   <div onClick={()=>{deleteItem(item._id)}}>
                     <MdDelete />
                   </div>
                   </div>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 text-[12px] sm:text-[16px] text-center sm:text-start">
                     {/* if more than 1 item then show the price for now I have 1 cuz I haven't applied function of adding same product more than once */}
                     ${(item.Price * 1).toFixed(2)} x {item.quantity}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-semibold">
+                  <p className="text-[12px] sm:text-xl font-semibold">
                     ${(item.Price * item.quantity).toFixed(2)}
                   </p>
                 </div>
@@ -125,14 +125,14 @@ totalPrice()
               </div>
             ))}
             {/* Total Price  */}
-            <div className="flex justify-between items-center pt-6 border-t mt-4">
-              <p className="text-xl font-bold">Total:</p>
-              <p className="text-xl font-bold">${totalPriceCart.toFixed(2)}</p>
+            <div className="flex justify-between items-center pt-6 mt-4">
+              <p className="text-[16px] sm:text-xl font-bold">Total:</p>
+              <p className="text-[16px] sm:text-xl font-bold">${totalPriceCart.toFixed(2)}</p>
             </div>
             <div className="text-right mt-6">
               {/* Link to checkout page  */}
               <Link to="/checkout">
-                <Button className="px-6 py-3 text-lg rounded-2xl shadow">
+                <Button className="px-6 py-3 text-[12px] sm:text-lg rounded-2xl shadow">
                   Proceed to Checkout
                 </Button>
               </Link>
