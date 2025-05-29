@@ -128,7 +128,7 @@ const AllProductsShop = () => {
             <div className="col-span-8">
               <h1 className="text-[32px] font-bold"></h1>
               <div className="grid grid-cols-3 gap-3">
-                {products.map((product, id) => (
+                {products.length > 0 ?( products.map((product, id) => (
                   <Products
                     key={id}
                     img={product.Image}
@@ -137,7 +137,8 @@ const AllProductsShop = () => {
                     functionForCart={() => CartFunction(product._id)}
                     onClick={() => viewFunction(product._id)}
                   />
-                ))}
+                ))):<div>Loading..</div>}
+               
               </div>
             </div>
           </main>
