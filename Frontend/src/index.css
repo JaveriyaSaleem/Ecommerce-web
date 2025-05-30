@@ -8,10 +8,14 @@
   font-family: integralFC;
   src: url(./assets/Fonts/Fontspring-DEMO-integralcf-regular.otf);
 }
+*{
+  box-sizing: border-box
+}
 body{
 font-family: Poppins;
 font-weight: lighter;
-overflow-x:hidden;
+/* overflow-x: hidden; */
+ overflow-x: clip;
 
 }
 body{

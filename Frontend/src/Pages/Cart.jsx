@@ -5,7 +5,7 @@ import Footer from '../Components/DashboardComp.jsx/Footer'
 
 const Cart = () => {
   return (
-    <div className='px-4'>
+    <div className=''>
         <Navbar/>
       <CartComp/>
       <Footer/>

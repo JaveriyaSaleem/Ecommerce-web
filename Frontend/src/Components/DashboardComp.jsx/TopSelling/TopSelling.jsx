@@ -56,7 +56,7 @@ const TopSelling = () => {
         theme="colored"
         transition={Bounce}
       />
-      <h1 className="text-[35px] font-black boldFont text-center">
+      <h1 className="overflow-x-clip text-[35px] font-black boldFont text-center">
         TOP SELLING
       </h1>
 
