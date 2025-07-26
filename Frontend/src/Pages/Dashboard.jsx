@@ -5,6 +5,7 @@ import Slider from '../Components/DashboardComp.jsx/Slider.jsx'
 import TopSelling from '../Components/DashboardComp.jsx/TopSelling/TopSelling.jsx'
 import Footer from '../Components/DashboardComp.jsx/Footer.jsx'
 import RatingsCustomer from '../Components/DashboardComp.jsx/RatingCustomer/RatingsCustomer.jsx'
+import Email from '../Components/DashboardComp.jsx/Email Comp/email.jsx'
 const Dashboard = () => {
   return (
       <div>
@@ -14,6 +15,7 @@ const Dashboard = () => {
         <Slider/>
         <TopSelling/>
         <RatingsCustomer/>
+        <Email/>
         
             </div>
         <Footer/>
