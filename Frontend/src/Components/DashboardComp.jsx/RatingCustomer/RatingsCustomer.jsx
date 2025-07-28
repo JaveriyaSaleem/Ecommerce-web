@@ -113,26 +113,32 @@ const getStars = (rating)=>{
       <h1 className='text-[35px] font-black boldFont text-center'>OUR HAPPY CUSTOMERS</h1>
       
       <div className='p-10'>
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          spaceBetween={20}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          loop={true}
-        >
+<Swiper
+  modules={[Autoplay, Pagination]}
+  autoplay={{
+    delay: 2500,
+    disableOnInteraction: false,
+  }}
+  spaceBetween={20}
+  slidesPerView={'auto'}
+  centeredSlides={true}
+  loop={true}
+  pagination={{ clickable: true }}
+  breakpoints={{
+    768: {
+      slidesPerView: 2,
+      centeredSlides: false,
+    },
+    1024: {
+      slidesPerView: 3,
+      centeredSlides: false,
+    },
+  }}
+>
           {customerRatings.map(({name, rating, review}, index) => (
-            <SwiperSlide key={index}>
-              <CardComponent customerName={name} rating={getStars(rating)} review={review} />
-            </SwiperSlide>
+           <SwiperSlide key={index} className=''>
+  <CardComponent customerName={name} rating={getStars(rating)} review={review} />
+</SwiperSlide>
           ))}
           
 
