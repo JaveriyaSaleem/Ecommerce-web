@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
       <div className=' '>
         <Navbar/>
-            <div className='px-6'>
+            <div className=''>
         <Hero/>
         <Slider/>
         <TopSelling/>

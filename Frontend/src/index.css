@@ -9,13 +9,14 @@
   src: url(./assets/Fonts/Fontspring-DEMO-integralcf-regular.otf);
 }
 *{
-  box-sizing: border-box
+  box-sizing: border-box;
+  outline: 1px solid red;
 }
 body{
 font-family: Poppins;
 font-weight: lighter;
-/* overflow-x: hidden; */
- overflow-x: clip;
+overflow-x: hidden;
+
 
 }
 body{
