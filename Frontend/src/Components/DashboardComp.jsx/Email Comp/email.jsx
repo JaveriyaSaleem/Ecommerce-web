@@ -3,7 +3,7 @@ import { CiMail } from "react-icons/ci";
 
 const Email = () => {
   return (
-    <main className='bg-black grid grid-cols-1 md:grid-cols-12 md:justify-around items-center py-5 px-5 sm:py-10 sm:px-20 rounded-4xl gap-5 g'>
+    <main className='absolute bg-black grid grid-cols-1 md:grid-cols-12 md:justify-around items-center py-5 px-5 sm:py-10 sm:px-20 rounded-4xl gap-5 g'>
       {/* left side  */}
 
       <div className='md:col-span-6 '>

@@ -8,17 +8,20 @@ import RatingsCustomer from '../Components/DashboardComp.jsx/RatingCustomer/Rati
 import Email from '../Components/DashboardComp.jsx/Email Comp/email.jsx'
 const Dashboard = () => {
   return (
-      <div>
+      <div className=' '>
         <Navbar/>
             <div className='px-6'>
         <Hero/>
         <Slider/>
         <TopSelling/>
         <RatingsCustomer/>
+        </div>
+        <div className='relative'>
         <Email/>
         
-            </div>
+            
         <Footer/>
+        </div>
       </div>
   )
 }
