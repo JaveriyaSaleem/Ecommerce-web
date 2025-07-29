@@ -77,7 +77,7 @@ const AllProductsShop = () => {
         <div className="px-3">
           <Navbar />
           <div className="pb-6">
-            <p className="flex items-center md:fixed">
+            <p className="flex items-center ">
               <span className="text-[#888383]">Home</span>{" "}
               <IoIosArrowForward /> Shop All
             </p>
