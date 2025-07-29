@@ -93,7 +93,7 @@ const AllProductsShop = () => {
             </button>
           </div>
 
-          <main className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-5">
+          <main className="grid grid-cols-1 md:grid-cols-12 sm:gap-10 pt-5">
             {/* Sidebar Filters (Desktop Only) */}
             <div className="hidden md:block col-span-2">
               <div className="border rounded-2xl fixed w-40 px-2 py-4">
