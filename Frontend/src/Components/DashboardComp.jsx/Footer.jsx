@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FaTwitter,FaFacebookF, FaInstagram,FaGithub   } from "react-icons/fa";
-import {paymentMethods} from '../../assets/Images/pay.png'
+import Payment from '../../assets/Images/pay.png'
 
 
 const Footer = () => {
@@ -61,7 +61,7 @@ const Footer = () => {
       </div>
       <div className='px-12 pt-6'>
         <p>Made with 💖 by <a href="https://github.com/JaveriyaSaleem" className='font-bold'>Javeriya</a>. All Right Reserved</p>
-        <figure><img src={paymentMethods} alt="img" /></figure>
+ <img src={Payment} alt="" />
       </div>
     </main>
   )
