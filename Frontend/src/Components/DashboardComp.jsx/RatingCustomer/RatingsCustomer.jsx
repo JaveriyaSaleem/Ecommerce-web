@@ -110,9 +110,9 @@ const getStars = (rating)=>{
 }
   return (
     <div>
-      <h1 className='text-[35px] font-black boldFont text-center'>OUR HAPPY CUSTOMERS</h1>
+      <h1 className='text-[28px] sm:text-[35px] font-black boldFont text-center'>OUR HAPPY CUSTOMERS</h1>
       
-      <div className='p-10'>
+      <div className='pt-5 px-2 sm:p-10'>
 <Swiper
   modules={[Autoplay, Pagination]}
   autoplay={{
@@ -148,7 +148,7 @@ const getStars = (rating)=>{
       {/* 💅 GLOBAL style targeting swiper-pagination */}
       <style>{`
         .swiper-pagination {
-          margin-top: 50px !important;
+          margin-top: 40px !important;
           position: relative !important;
 
         }

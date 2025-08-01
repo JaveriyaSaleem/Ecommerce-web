@@ -42,7 +42,7 @@ const TopSelling = () => {
 
 
   return (
-    <div className="py-10">
+    <div className="py-10 px-2">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -60,7 +60,7 @@ const TopSelling = () => {
         TOP SELLING
       </h1>
 
-      <div className="flex flex-col md:flex-row items-center justify-between pt-20 pb-10 gap-2 w-full " data-aos="fade-up"
+      <div className="px-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center justify-center mx-auto pt-20 sm:pb-10 gap-2 w-full " data-aos="fade-up"
   data-aos-delay="200">
         {topSelling.map((product) => (
           <Products
@@ -75,7 +75,7 @@ const TopSelling = () => {
       </div>
       <div className="flex justify-center">
         <Link
-          className="cursor-pointer border py-2 px-10 rounded-full"
+          className="text-[14px] sm:text-[16px] cursor-pointer border py-2 px-10 rounded-full"
           to="/shopAll"
         >
           View All{" "}
