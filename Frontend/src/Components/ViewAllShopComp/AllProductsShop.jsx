@@ -96,7 +96,7 @@ const AllProductsShop = () => {
           <main className="grid grid-cols-1 md:grid-cols-12 sm:gap-10 pt-5">
             {/* Sidebar Filters (Desktop Only) */}
             <div className="hidden md:block col-span-2">
-              <div className="border rounded-2xl fixed w-40 px-2 py-4">
+              <div className="border rounded-2xl sticky top-28 w-40 px-2 py-4">
                 <h3 className="flex items-center justify-between border-b pb-4">
                   <span>Filters</span>
                   <HiOutlineAdjustments className="text-[#aeaeae] text-[20px]" />
@@ -158,7 +158,7 @@ const AllProductsShop = () => {
                     />
                   ))
                 ) : (
-                  <div>Loading..</div>
+                  <div className="h-[400px]">Loading..</div>
                 )}
               </div>
             </div>

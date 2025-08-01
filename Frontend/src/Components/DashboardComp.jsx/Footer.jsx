@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
           </main>
       </div>
-      <div className='px-2 sm:px-12 pt-6 flex flex-col justify-between items-center gap-2'>
+      <div className='px-2 sm:px-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-2'>
         <p className='text-[12px] sm:text-[14px] md:text-[16px]'>Made with 💖 by <a href="https://github.com/JaveriyaSaleem" className='font-bold'>Javeriya</a>. All Right Reserved</p>
  <img src={Payment} alt="paymentimg" />
       </div>
