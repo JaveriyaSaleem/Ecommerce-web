@@ -23,16 +23,16 @@ const Footer = () => {
           <main className='grid grid-cols-2 md:grid-cols-4 gap-8'>
             <div className='text-base/6 sm:text-base/8'>
               <h3 className='font-bold pb-2 text-[14px] sm:text-[16px]'>COMPANY</h3>
-              <ul className='text-[12px] sm:text-[14px] md:text-[16px] '>
+              <ul className='text-[12px] sm:text-[14px] md:text-[16px] hover:cursor-pointer'>
                 <li>About</li>
                 <li>Features</li>
                 <li>Works</li>
                 <li>Career</li>
               </ul>
             </div >
-              <div className='text-base/6 sm:text-base/8'>
+              <div className='text-base/6 sm:text-base/8 '>
               <h3 className='font-bold pb-2 text-[14px] sm:text-[16px]'>HELP</h3>
-              <ul className='text-[12px] sm:text-[14px] md:text-[16px]'>
+              <ul className='text-[12px] sm:text-[14px] md:text-[16px] hover:cursor-pointer'>
                 <li>Customer Support</li>
                 <li>Delivery Details</li>
                 <li>Terms & Conditions</li>
@@ -41,7 +41,7 @@ const Footer = () => {
             </div>
             <div className=' text-base/6 sm:text-base/8'>
               <h3 className='font-bold pb-2 text-[14px] sm:text-[16px]'>FAQ</h3>
-              <ul className='text-[12px] sm:text-[14px] md:text-[16px]'>
+              <ul className='text-[12px] sm:text-[14px] md:text-[16px] hover:cursor-pointer'>
                 <li>Account</li>
                 <li>Manage Deliveries</li>
                 <li>Orders</li>
@@ -50,7 +50,7 @@ const Footer = () => {
             </div>
             <div className='text-base/6 sm:text-base/8'>
               <h3 className='font-bold pb-2 text-[14px] sm:text-[16px]'>RESOURCES</h3>
-              <ul className='text-[12px] sm:text-[14px] md:text-[16px]'>
+              <ul className='text-[12px] sm:text-[14px] md:text-[16px] hover:cursor-pointer'>
                 <li>Free eBooks</li>
                 <li>Development Tutorial</li>
                 <li>How to Blog</li>

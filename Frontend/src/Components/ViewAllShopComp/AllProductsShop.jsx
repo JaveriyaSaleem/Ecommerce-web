@@ -145,7 +145,7 @@ const AllProductsShop = () => {
             {/* Product Section */}
             <div className="md:col-span-8 col-span-12">
               <h1 className="text-[32px] font-bold"></h1>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {products.length > 0 ? (
                   products.map((product, id) => (
                     <Products
