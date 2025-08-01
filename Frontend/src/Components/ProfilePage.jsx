@@ -61,10 +61,10 @@ console.log("dekh aya ",user)
   };
 
   return (
-    <div className="p-10 max-w-5xl mx-auto bg-white mb-20">
-      <h1 className="text-[25px] font-black py-2">MY ACCOUNT</h1>
+    <div className="p-10 max-w-5xl mx-auto bg-white sm:mb-20">
+      <h1 className="text-[16px] sm:text-[25px] font-black py-2">MY ACCOUNT</h1>
       {/* 🧾 Order History */}
-      <h2 className="text-[16px] font-bold mb-4">ORDER HISTORY</h2>
+      <h2 className="text-[12px] sm:text-[16px] font-bold mb-4">ORDER HISTORY</h2>
       <div className="overflow-x-auto">
   <table className="min-w-full text-xs sm:text-sm text-center border border-gray-200">
     <thead className="bg-gray-100">
@@ -91,23 +91,20 @@ console.log("dekh aya ",user)
 </div>
 
       {/* 👤 Account Details */}
-      <h2 className="text-xl font-bold mt-8 mb-4">ACCOUNT DETAILS</h2>
+      <h2 className="sm:text-xl font-bold mt-8 mb-4 text-[16px]">ACCOUNT DETAILS</h2>
       {user? <div className="text-gray-700 space-y-1">
       
         <div className="flex items-center gap-2">
-                <p className="font-semibold">{user.Username}</p>
+                <p className="font-semibold text-[14px] sm:text-[16px]">{user.Username}</p>
         {/* edit profile  */}
         <div>
           <ModalForm/>
         </div></div>
-        <p>{user.email}<span className="text-red-600">(you can't change email)</span></p>
-        {/* <p>Ghulam Hussain Street, Shama Palace A2, Punjabi Club, Kharadar.</p>
-        <p>Karachi</p>
-        <p>74000</p>
-        <p>Pakistan</p> */}
+        <p className="text-[14px] sm:text-[16px]">{user.email}<span className="text-red-600 ">(you can't change email)</span></p>
+
   
         
-      </div> : <p className="text-gray-700">No user found</p>}
+      </div> : <p className="text-gray-700 text-[14px] sm:text-[16px]">No user found</p>}
      
 
       {/* 📬 View Address Button */}
@@ -117,7 +114,7 @@ console.log("dekh aya ",user)
                navigate('/login');
           }, 2000);
      }}>
-        <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow">
+        <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow text-[12px] sm:text-[16px]">
          Logout 
         </button>
        

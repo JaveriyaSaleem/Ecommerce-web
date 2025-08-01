@@ -6,7 +6,9 @@ import { MdDelete } from "react-icons/md";
 const CartComp = () => {
   const [filteredItems, setfilteredItems] = useState([]);
   const [ totalPriceCart, setTotalPriceCart ] = useState(0);
+  const [isLoading, setisLoading] = useState(true)
   const cartItems = async () => {
+    setisLoading(true);
     try {
       // products from db
       const gettingProducts = await axios("https://backend-of-shopco-git-master-javeriya-saleem.vercel.app/products");
@@ -41,6 +43,9 @@ const filterProducts = gettingProducts.data
     } catch (e) {
       console.log(e);
     }
+    finally {
+    setisLoading(false); 
+  }
   };
   // remove item 
 const deleteItem = async (productId)=>{
@@ -90,10 +95,14 @@ totalPrice()
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6">
-        <h2 className="text-2xl font-semibold mb-4 text-center sm:text-start">Your Cart</h2>
+        <h2 className="sm:text-2xl font-semibold mb-4 text-center sm:text-start text-[16px]">Your Cart</h2>
         {/* FILTERED ITEMS  */}
-        {filteredItems.length > 0 ? (
-          <div className="space-y-4">
+        {isLoading?(
+            <div className="text-center text-gray-500 text-lg">Loading your cart please wait...</div>
+        )
+        :(filteredItems.length > 0 ? (
+          <div className="space-y-4 ">
+           {console.log(filteredItems? filteredItems: "no items found")}
             {filteredItems.map((item) => (
               <div
                 key={item._id}
@@ -132,7 +141,7 @@ totalPrice()
             <div className="text-right mt-6">
               {/* Link to checkout page  */}
               <Link to="/checkout">
-                <Button className="px-6 py-3 text-[12px] sm:text-lg rounded-2xl shadow">
+                <Button className="sm:px-6 sm:py-3 text-[12px] sm:text-lg rounded-2xl shadow">
                   Proceed to Checkout
                 </Button>
               </Link>
@@ -140,7 +149,7 @@ totalPrice()
           </div>
         ) : (
           <p>Your cart is empty.</p>
-        )}
+        ))}
       </div>
     </div>
   );
