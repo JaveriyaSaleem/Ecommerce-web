@@ -9,7 +9,7 @@ const CardComponent = (props) => {
         {props.rating}
          </p> 
         <h3 className='font-medium flex items-center gap-1'><span className='text-[14px] sm:text-[18px]'>{props.customerName}</span> <FaCheckCircle className='text-[#01ab31]'/></h3>
-        <p className='font-extralight text-[12px] text-[#9f9f9f]'>{props.review}</p>
+        <p className='font-extralight text-[12px] sm:text-[14px] md:text-[16px] text-[#9f9f9f]'>{props.review}</p>
 
       
     </div>

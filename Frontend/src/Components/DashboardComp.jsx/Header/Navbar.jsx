@@ -120,7 +120,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="flex justify-center items-center pb-10 absolute top-20 left-0 w-full bg-white shadow-md space-y-10 py-6 md:hidden">
+        <div className="flex justify-center items-center pb-10 absolute top-20 left-0 w-full bg-white shadow-md space-y-10 py-6 md:hidden z-10">
           <div className="flex flex-col items-center gap-4">
             <Link to="/">
               <a className=" font-bold">
