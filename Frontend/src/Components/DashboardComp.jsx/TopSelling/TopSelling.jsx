@@ -1,6 +1,6 @@
 // Dashboard below brand names
 import React, { useEffect, useState } from "react";
-import Products from "./Products";
+import Product2 from "./Products";
 import { ToastContainer, Bounce, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -60,10 +60,10 @@ const TopSelling = () => {
         TOP SELLING
       </h1>
 
-      <div className="px-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center justify-center mx-auto pt-20 sm:pb-10 gap-2 w-full " data-aos="fade-up"
+      <div className="px-2 grid grid-cols-2 lg:grid-cols-4 items-center justify-center mx-auto pt-2 sm:pt-10 md:pt-20 sm:pb-10 gap-2 w-full " data-aos="fade-up"
   data-aos-delay="200">
         {topSelling.map((product) => (
-          <Products
+          <Product2
             functionForCart={() => CartFunction(product._id)}
             key={product._id}
             img={product.Image}
@@ -75,7 +75,7 @@ const TopSelling = () => {
       </div>
       <div className="flex justify-center">
         <Link
-          className="text-[14px] sm:text-[16px] cursor-pointer border py-2 px-10 rounded-full"
+          className="text-[12px] sm:text-[16px] cursor-pointer border px-8  sm:py-2 sm:px-10 rounded-full hover:cursor-pointer hover:text-white hover:bg-black transition duration-300 ease-in-out"
           to="/shopAll"
         >
           View All{" "}

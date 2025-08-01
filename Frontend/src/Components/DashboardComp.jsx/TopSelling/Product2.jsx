@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Swal from 'sweetalert2';
 
 
-const Products = (props) => {
+const Product2 = (props) => {
   const navigate = useNavigate();
     
   return (
@@ -15,11 +15,11 @@ const Products = (props) => {
           <h3 className='font-bold text-[10px] sm:text-[16px]'>{props.name}</h3>
           <h3 className=" text-[12px] sm:text-[16px]">{props.price}</h3>
         </div>
-        <div><button className='cursor-pointer border py-1 px-2 sm:py-2 sm:px-4 rounded-full bg-black text-white hover:scale-[1.07] transition duration-300 ease-in-out text-[8px] sm:text-[14px] md:text-[16px]' onClick={props.functionForCart}>Add to Cart</button> <button className='cursor-pointer border py-1 px-2 sm:py-2 sm:px-4 rounded-full hover:scale-[1.07] transition duration-300 ease-in-out text-[8px] sm:text-[14px] md:text-[16px]' onClick={props.onClick}>View Item</button>
+        <div><button className='cursor-pointer border py-1 px-1 sm:py-2 sm:px-4 rounded-full bg-black text-white hover:scale-[1.07] transition duration-300 ease-in-out text-[8px] sm:text-[14px] md:text-[16px]' onClick={props.functionForCart}>Add to Cart</button> <button className='cursor-pointer border py-1 px-1 sm:py-2 sm:px-4 rounded-full hover:scale-[1.07] transition duration-300 ease-in-out text-[8px] sm:text-[14px] md:text-[16px]' onClick={props.onClick}>View Item</button>
         </div>
       </div>
     </div>
   )
 }
 
-export default Products
+export default Product2
