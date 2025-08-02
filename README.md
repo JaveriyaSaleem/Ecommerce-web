@@ -1,68 +1,99 @@
-# 🛍️ Full Stack E-Commerce Web App (SHOPCO)
+# 🛍️ Full Stack E-Commerce Web App — SHOPCO
 
-A fully responsive, animated, full-stack eCommerce website with seamless user experience and robust backend features. Built to scale, styled to slay!
+A fully responsive, animated full-stack eCommerce website built with the MERN stack. It’s fast, functional, and fabulous!
+ShopCo lets users explore products, manage their carts, place orders, and view their purchase history — all wrapped in a clean and modern UI with smooth animations.
+
 ---
 
 ## 💡 Features
 
-### 👤 User Side:
-- 🔐 **Authentication & Authorization** (JWT-based login/signup)
-<!-- - 🌙 **Light/Dark Theme Toggle** (mood switch real quick) -->
-- 🛒 **Product Browsing** by categories
-- ➕ **Add to Cart** functionality
-- 📦 **Order Placement**
-- 🕰 **View Order History**
-- 📝 **Edit User Profile & Info**
-- 📧 **Email Confirmation** after order placement (coming soon)
-- 🤖 **Customer Support Chatbot** (coming soon)
+### 👤 User-Side:
 
-### 💻 Developer Side:
-- 🧠 Built with **MERN Stack**
-  - React (Frontend)
-  - Node.js + Express (Backend)
-  - MongoDB (Database)
-- 🎨 Styled with **Tailwind CSS** and juicy **Animations**
-- 📱 Fully **Responsive** across all screen sizes
-- 🔄 RESTful API Integration
-- 🔐 JWT **Token-based security**
-- 💾 Persistent User Sessions
-- ⚙️ Clean & Modular Codebase
+* 🔐 **JWT Authentication** for login/signup
+* 🌐 **Responsive Design** for mobile, tablet, and desktop
+* 🎭 **Animated UI** with smooth transitions
+* 🛍️ **Browse Products** by category
+* ➕ **Add to Cart**, update quantity, remove items
+* 📦 **Place Orders**
+* 📜 **View Past Orders** & Order Details
+* 📝 **Update Profile Info**
+* 🌓 **Light/Dark Theme** *(coming soon)*
+* 📧 **Order Confirmation Emails** *(coming soon)*
+* 🤖 **Customer Support Chatbot** *(coming soon)*
+
+---
+
+### 💻 Developer-Side:
+
+* 🚀 **MERN Stack**
+
+  * React (frontend)
+  * Node.js + Express (backend)
+  * MongoDB (database)
+* 🎨 **Tailwind CSS** for styling
+* 🔁 **RESTful API** integration
+* 🔐 **JWT Token-based Security**
+* 💾 Persistent sessions and user data
+* 📦 Modular folder structure for scalability
+* 🧪 Coming Soon: Unit & Integration Tests
 
 ---
 
 ## 🚀 Tech Stack
 
-| Tech          | Usage                          |
-|---------------|-------------------------------|
-| `React`       | Frontend UI                   |
-| `Tailwind CSS`| Styling & responsive design   |
-| `Swiper.js`   | Slider Animation          |
-| `Node.js`     | Backend logic & server        |
-| `Express.js`  | API Routing                   |
-| `MongoDB`     | Database                      |
-| `Mongoose`    | Data Modeling                 |
-| `JWT`         | Authentication                |
+| Tech           | Purpose                  |
+| -------------- | ------------------------ |
+| `React`        | Frontend UI              |
+| `Tailwind CSS` | Styling + Responsiveness |
+| `Swiper.js`    | Carousel animations      |
+| `Node.js`      | Backend Runtime          |
+| `Express.js`   | API Routing              |
+| `MongoDB`      | NoSQL Database           |
+| `Mongoose`     | ODM for MongoDB          |
+| `JWT`          | Authentication           |
 
 ---
 
-## 🔧 Setup Instructions
+## 🛠️ Getting Started
+
+> Clone the repo and install dependencies for both frontend and backend.
 
 ```bash
-# 1. Clone the repo
+# 1. Clone the repository
 git clone https://github.com/JaveriyaSaleem/Ecommerce-web.git
-cd Ecommerce Web
 
-# 2. Install dependencies for frontend and backend
-cd frontend && npm install
-cd backend && npm install
+# 2. Install frontend dependencies
+cd frontend
+npm install
 
-# 3. Add your environment variables
-# Example: .env (in /server)
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_super_secret_key
+# 3. Install backend dependencies
+cd backend
+npm install
 
-# 4. Start development server
+# 4. Create a `.env` file inside /backend with:
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=your_secret_key
+
+# 5. Start the dev servers (in separate terminals)
 cd frontend && npm run dev
 cd backend && npm run dev
+```
+
 ---
-happy coding fellas!
+
+## 📬 Upcoming Features
+
+* 🌓 Light/Dark mode toggle with local storage support
+* 📧 Email notifications after successful orders
+* 🤖 AI-powered customer support chatbot
+* 📊 Admin dashboard for order & user management
+* 🧪 Tests for better reliability
+
+---
+
+
+## ✨ Author
+
+Developed with love by **[Javeriya Saleem](https://github.com/JaveriyaSaleem)** 💅
+
+Feel free to star ⭐ the repo and follow for updates!
