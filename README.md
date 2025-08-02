@@ -64,5 +64,5 @@ JWT_SECRET=your_super_secret_key
 # 4. Start development server
 cd frontend && npm run dev
 cd backend && npm run dev
-
-happy coding!
+---
+happy coding fellas!
